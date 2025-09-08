@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Menu};
+use App\Models\{Chef, Menu};
 use Illuminate\Http\Request;
 
 class SystemController extends Controller
@@ -11,7 +11,7 @@ class SystemController extends Controller
 
         $Menu=Menu::where('special',0)->get();
         $specialMenu=Menu::where('special',1)->get();
-        return view('index',compact('Menu','specialMenu'));
-
+        $chefs=Chef::with('awards')->get();
+        return view('index',compact('Menu','specialMenu','chefs'));
     }
 }
