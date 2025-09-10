@@ -25,6 +25,7 @@
 
         <!-- Main CSS File -->
         <link href="assets/css/main.css" rel="stylesheet">
+        
     </head>
 
     <body class="index-page">
