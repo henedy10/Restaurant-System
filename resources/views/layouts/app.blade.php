@@ -25,7 +25,7 @@
 
         <!-- Main CSS File -->
         <link href="assets/css/main.css" rel="stylesheet">
-        
+
     </head>
 
     <body class="index-page">
@@ -65,7 +65,10 @@
                         <a href="index.html" class="logo d-flex align-items-center">
                             <span class="sitename">NiceRestaurant</span>
                         </a>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                        <p>
+                            Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
+                            valies darta donna mare fermentum iaculis eu non diam phasellus.
+                        </p>
                         <div class="social-links d-flex mt-4">
                             <a href=""><i class="bi bi-twitter-x"></i></a>
                             <a href=""><i class="bi bi-facebook"></i></a>
@@ -74,7 +77,8 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-6 footer-links">
+                    <!-- Useful Links -->
+                    <div class="col-lg-2 col-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
                             <li><a href="#">Home</a></li>
@@ -85,13 +89,23 @@
                         </ul>
                     </div>
 
-                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                    <!-- Contact Us -->
+                    <div class="col-lg-2 col-md-6 footer-contact">
                         <h4>Contact Us</h4>
                         <p>A108 Adam Street</p>
                         <p>New York, NY 535022</p>
                         <p>United States</p>
                         <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
                         <p><strong>Email:</strong> <span>info@example.com</span></p>
+                    </div>
+
+                    <!-- Subscribe -->
+                    <div class="col-lg-2 col-md-6 footer-subscribe">
+                        <h4>Subscribe to our Newsletter</h4>
+                        <form action="#" method="post" class="d-flex flex-column">
+                            <input type="email" name="email" class="form-control mb-2" placeholder="Your Email" required>
+                            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+                        </form>
                     </div>
                 </div>
             </div>
