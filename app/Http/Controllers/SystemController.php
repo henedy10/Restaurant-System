@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{BookingRoom, Chef, Menu};
-use Illuminate\Http\Request;
-use App\Http\Requests\storeBookingTable;
+use App\Models\{
+        BookingRoom,
+        Chef,
+        Menu,
+        Subscriber
+};
+use App\Http\Requests\{
+    storeBookingTable,
+    storeSubsribers
+};
+use App\Mail\{
+    BookingConfirmedMail,
+    SubscribeConfirmedMail
+};
 use Illuminate\Support\Facades\Mail;
-use App\Mail\BookingConfirmedMail;
+
 class SystemController extends Controller
 {
     public function index(){
@@ -17,11 +28,18 @@ class SystemController extends Controller
         return view('index',compact('Menu','specialMenu','chefs'));
     }
 
-    public function store(storeBookingTable $request){
+    public function storeBookingTable(storeBookingTable $request){
 
         $validated = $request->validated();
         BookingRoom::create($validated);
         Mail::to($validated['email'])->send(new BookingConfirmedMail($validated));
         return redirect()->back()->with('success','تم تسجيل الحجز بنجاح');
+    }
+
+    public function storeSubscribers(storeSubsribers $request){
+        $validated=$request->validated();
+        Subscriber::create($validated);
+        Mail::to($validated['email'])->send(new SubscribeConfirmedMail($validated));
+        return redirect()->back()->with('success','تم تسجيل الحساب بنجاح');
     }
 }

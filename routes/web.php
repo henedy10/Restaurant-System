@@ -10,5 +10,6 @@ Route::get('/download',function (){
 
 Route::controller(SystemController::class)->group(function(){
     Route::get('/','index');
-    Route::post('/book-tables','store')->name('book-tables.store');
+    Route::post('/book-tables','storeBookingTable')->name('book-tables.store');
+    Route::post('/subsribe','storeSubscribers')->name('subscribers.store');
 });
