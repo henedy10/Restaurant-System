@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\{
-        BookingRoom,
-        Chef,
-        Menu,
-        Subscriber
+    BookingRoom,
+    Chef,
+    Contact,
+    Menu,
+    Subscriber
 };
 use App\Http\Requests\{
     storeBookingTable,
-    storeSubsribers
+    storeSubsribers,
+    storeContactMessage
 };
 use App\Mail\{
     BookingConfirmedMail,
@@ -41,5 +43,11 @@ class SystemController extends Controller
         Subscriber::create($validated);
         Mail::to($validated['email'])->send(new SubscribeConfirmedMail($validated));
         return redirect()->back()->with('success','تم تسجيل الحساب بنجاح');
+    }
+
+    public function storeContactMessage(storeContactMessage $request){
+        $validated=$request->validated();
+        Contact::create($validated);
+        return redirect()->back()->with('contactMsgSuccess','تم تسجيل الرسالة بنجاح');
     }
 }

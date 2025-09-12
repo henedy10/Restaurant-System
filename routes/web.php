@@ -12,4 +12,5 @@ Route::controller(SystemController::class)->group(function(){
     Route::get('/','index');
     Route::post('/book-tables','storeBookingTable')->name('book-tables.store');
     Route::post('/subsribe','storeSubscribers')->name('subscribers.store');
+    Route::post('/contact','storeContactMessage')->name('contactMsg.store');
 });

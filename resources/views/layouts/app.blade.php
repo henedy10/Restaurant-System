@@ -104,18 +104,11 @@
                         <h4>Subscribe to our Newsletter</h4>
                         <form action="{{route('subscribers.store')}}" method="post" class="d-flex flex-column">
                             @csrf
-                            <input type="email" name="email" class="form-control mb-2" placeholder="Your Email" required>
+                            <input type="email" name="email" class="form-control mb-2" placeholder="Your Email" >
+                                @error('email')
+                                    <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                @enderror
                             <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
-
-                            @if ($errors->any())
-                                <div class="alert alert-danger mt-3">
-                                    <ul class="mb-0">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
 
                             @if (session('success'))
                                 <div class="alert alert-success alert-dismissible fade show text-center rounded shadow-sm p-3 mt-2" role="alert">
