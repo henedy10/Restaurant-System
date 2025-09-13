@@ -58,13 +58,22 @@
                                     @csrf
                                 <div class="row gy-4">
                                     <div class="col-lg-4 form-group">
-                                        <input type="text" name="name"  class="form-control" placeholder="Your Name" >
+                                        <input type="text" name="name"  class="form-control" placeholder="Your Name" value="{{old('name')}}" >
+                                        @error('name')
+                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-lg-4 form-group">
-                                        <input type="email" class="form-control" name="email" placeholder="Your Email" >
+                                        <input type="email" class="form-control" name="email" placeholder="Your Email" value="{{old('email')}}" >
+                                        @error('email')
+                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-lg-4 form-group">
-                                        <input type="text" class="form-control" name="phone" placeholder="Your Phone" >
+                                        <input type="text" class="form-control" name="phone" placeholder="Your Phone" value="{{old('phone')}}" >
+                                        @error('phone')
+                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-lg-4 form-group">
                                         <select name="people" class="form-select" >
@@ -74,30 +83,32 @@
                                             <option value="3">3 People</option>
                                             <option value="4">4 People</option>
                                             <option value="5">5 People</option>
-                                            <option value="6">6+ People</option>
+                                            <option value="6">6 People</option>
                                         </select>
+                                            @error('people')
+                                                <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div class="col-lg-4 form-group">
-                                        <input type="date" name="date" class="form-control" placeholder="Date" >
+                                        <input type="date" name="date" class="form-control" placeholder="Date" value="{{old('date')}}" >
+                                        @error('date')
+                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-lg-4 form-group">
-                                        <input type="time" class="form-control" name="time" id="time" placeholder="Time" >
+                                        <input type="time" class="form-control" name="time" id="time" placeholder="Time" value="{{old('time')}}" >
+                                        @error('time')
+                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group mt-4">
-                                        <textarea class="form-control" name="message" rows="3" placeholder="Special Requests (Optional)"></textarea>
+                                        <textarea class="form-control" name="message" rows="3" placeholder="Special Requests (Optional)" value="{{old('message')}}"></textarea>
+                                        @error('message')
+                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
-
-                                @if ($errors->any())
-                                    <div class="alert alert-danger mt-3">
-                                        <ul class="mb-0">
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
 
                                 @if (session('success'))
                                     <div class="alert alert-success alert-dismissible fade show text-center rounded shadow-sm p-3 mt-2" role="alert">
@@ -105,7 +116,6 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                 @endif
-
 
                                 <div class="text-center mt-4">
                                     <button type="submit" class="btn-book-table">Book Now</button>

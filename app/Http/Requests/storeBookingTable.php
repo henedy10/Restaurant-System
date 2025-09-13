@@ -23,9 +23,9 @@ class storeBookingTable extends FormRequest
     {
         return [
             'name'    => 'required|string',
-            'email'   => 'required|email',
+            'email'   => 'required|email:rfc,dns',
             'phone'   => 'required|digits:11',
-            'people'  => 'required',
+            'people'  => 'required|min:1|max:6',
             'date'    => 'required|date',
             'time'    => 'required|date_format:H:i',
         ];

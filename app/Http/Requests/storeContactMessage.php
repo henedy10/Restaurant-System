@@ -23,7 +23,7 @@ class storeContactMessage extends FormRequest
     {
         return [
             'firstName'  => 'required',
-            'email'      => 'required|email|exists:subscribers,email',
+            'email'      => 'required|email:rfc,dns|exists:subscribers,email',
             'subject'    => 'required',
             'message'    => 'required',
         ];
