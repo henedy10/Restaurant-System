@@ -63,18 +63,21 @@
                                             <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
                                         @enderror
                                     </div>
+
                                     <div class="col-lg-4 form-group">
                                         <input type="email" class="form-control" name="email" placeholder="Your Email" value="{{old('email')}}" >
                                         @error('email')
                                             <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
                                         @enderror
                                     </div>
+
                                     <div class="col-lg-4 form-group">
                                         <input type="text" class="form-control" name="phone" placeholder="Your Phone" value="{{old('phone')}}" >
                                         @error('phone')
                                             <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
                                         @enderror
                                     </div>
+
                                     <div class="col-lg-4 form-group">
                                         <select name="people" class="form-select" >
                                             <option value="">Number of guests</option>
@@ -89,12 +92,14 @@
                                                 <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
                                             @enderror
                                     </div>
+
                                     <div class="col-lg-4 form-group">
                                         <input type="date" name="date" class="form-control" placeholder="Date" value="{{old('date')}}" >
                                         @error('date')
                                             <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
                                         @enderror
                                     </div>
+
                                     <div class="col-lg-4 form-group">
                                         <input type="time" class="form-control" name="time" id="time" placeholder="Time" value="{{old('time')}}" >
                                         @error('time')
@@ -120,6 +125,7 @@
                                 <div class="text-center mt-4">
                                     <button type="submit" class="btn-book-table">Book Now</button>
                                 </div>
+
                             </form>
                         </div>
                     </div>

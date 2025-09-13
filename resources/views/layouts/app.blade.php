@@ -52,6 +52,7 @@
                 </nav>
 
                 <a class="btn-getstarted d-none d-sm-block" href="#book-a-table">Book a Table</a>
+                <a class="btn btn-outline-danger ml-2" href="#">Admin</a>
 
             </div>
         </header>

@@ -23,12 +23,13 @@
                             <!-- Regular Menu Items -->
                             @forelse ( $Menu as $Category )
                                 @php
-                                    $filterClass = match($Category->type) {
-                                        'Dessert'=> 'filter-dessert' ,
-                                        'Drink'=> 'filter-drinks' ,
-                                        default=> 'filter-main',
+                                    $filterClass = match($Category->type){
+                                        'Dessert'  => 'filter-dessert' ,
+                                        'Drink'    => 'filter-drinks' ,
+                                        default    => 'filter-main',
                                     };
                                 @endphp
+
                                 <div class="col-lg-6 isotope-item {{$filterClass}}">
                                     <div class="menu-item d-flex align-items-center gap-4">
                                         <img src="{{$Category->image}}" alt="Starter" class="menu-img img-fluid rounded-3">
@@ -39,6 +40,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             @empty
                                 <p class="text-danger fs-3"> * There is no menu now </p>
                             @endforelse
@@ -46,7 +48,7 @@
                     </div>
 
                     <div class="text-center mt-5" data-aos="fade-up">
-                        <a href="{{url('/download')}}" download class="download-menu">
+                        <a href="{{route('downloadMenu')}}" download class="download-menu">
                             <i class="bi bi-file-earmark-pdf"></i> Download Full Menu
                         </a>
                     </div>

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\client;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeBookingTable extends FormRequest
+class storeContactMessage extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,17 @@ class storeBookingTable extends FormRequest
     public function rules(): array
     {
         return [
-            'name'    => 'required|string',
-            'email'   => 'required|email:rfc,dns',
-            'phone'   => 'required|digits:11',
-            'people'  => 'required|min:1|max:6',
-            'date'    => 'required|date',
-            'time'    => 'required|date_format:H:i',
+            'firstName'  => 'required',
+            'email'      => 'required|email:rfc,dns|exists:subscribers,email',
+            'subject'    => 'required',
+            'message'    => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.exists' => 'You must subsribe first',
         ];
     }
 }

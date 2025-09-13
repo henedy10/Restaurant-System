@@ -3,30 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\{
-    BookingRoom,
     Chef,
-    Contact,
     Menu,
-    Subscriber
+    client\BookingRoom,
+    client\Contact,
+    client\Subscriber,
 };
-use App\Http\Requests\{
+
+use App\Http\Requests\client\{
     storeBookingTable,
     storeSubsribers,
     storeContactMessage
 };
+
 use App\Mail\{
     BookingConfirmedMail,
     SubscribeConfirmedMail
 };
+
 use Illuminate\Support\Facades\Mail;
 
-class SystemController extends Controller
+class ClientController extends Controller
 {
     public function index(){
 
-        $Menu=Menu::where('special',0)->get();
-        $specialMenu=Menu::where('special',1)->get();
-        $chefs=Chef::with('awards')->get();
+        $Menu = Menu::where('special',0)->get();
+        $specialMenu = Menu::where('special',1)->get();
+        $chefs = Chef::with('awards')->get();
         return view('index',compact('Menu','specialMenu','chefs'));
     }
 
@@ -39,6 +42,7 @@ class SystemController extends Controller
     }
 
     public function storeSubscribers(storeSubsribers $request){
+
         $validated=$request->validated();
         Subscriber::create($validated);
         Mail::to($validated['email'])->send(new SubscribeConfirmedMail($validated));
@@ -46,8 +50,14 @@ class SystemController extends Controller
     }
 
     public function storeContactMessage(storeContactMessage $request){
+
         $validated=$request->validated();
         Contact::create($validated);
         return redirect()->back()->with('contactMsgSuccess','تم تسجيل الرسالة بنجاح');
+    }
+
+    public function downloadMenu(){
+
+        return response()->download(storage_path('app/public/Menu.jpg'));
     }
 }
