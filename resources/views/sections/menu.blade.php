@@ -78,7 +78,14 @@
                                     </div>
                                 </div>
                             @empty
-                                <p class="text-danger fs-3"> * There is no chef's Special now! </p>
+                                <div class="container mt-4">
+                                    <div class="alert alert-warning d-flex align-items-center shadow-sm border-0" role="alert" style="background-color:#2c2c2c; color:#f8d7da;">
+                                        <i class="bi bi-exclamation-triangle-fill me-2" style="color:#dc3545; font-size:1.2rem;"></i>
+                                        <div>
+                                            There is no Chef's Special available now!
+                                        </div>
+                                    </div>
+                                </div>
                             @endforelse
                         </div>
                     </div>
