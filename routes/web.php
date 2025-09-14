@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\ClientController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{ClientController,HomeController};
+use Illuminate\Support\Facades\{Route,Auth};
 
 
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::controller(ClientController::class)->group(function(){
     Route::get('/','index');
@@ -12,3 +15,12 @@ Route::controller(ClientController::class)->group(function(){
     Route::post('/contact','storeContactMessage')->name('contactMsg.store');
     Route::get('/download-Menu','downloadMenu')->name('downloadMenu');
 });
+
+
+
+
+
+
+
+
+
