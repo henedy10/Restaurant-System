@@ -40,7 +40,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit"
-                                    class="btn btn-warning fw-bold px-4 shadow-sm border border-2 border-black">
+                                    class="btn btn-warning fw-bold px-4 shadow-sm border-2 border-black">
                                     {{ __('Send Reset Link') }}
                                 </button>
                             </div>
