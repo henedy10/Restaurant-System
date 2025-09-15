@@ -6,12 +6,13 @@
         <div class="col-md-8">
             <div class="card shadow-lg border-2 border-warning rounded-3">
                 <div class="card-header text-center bg-black text-warning fw-bold fs-4">
-                    {{ __('Login') }}
+                    <span><a href="{{ route('index') }}" class="nav-link">{{__('Nice Restaurant')}}</a></span>
+                    <span>{{ __('Login') }}</span>
                 </div>
 
                 <div class="card-body bg-dark text-light p-4">
                     <form method="POST" action="{{ route('login') }}"
-                          class="p-4  border-warning rounded-3 shadow-sm">
+                            class="p-4  border-warning rounded-3 shadow-sm">
                         @csrf
 
                         <!-- Email -->
@@ -81,8 +82,8 @@
                     </form>
                 </div>
 
-                <div class="card-footer bg-black text-center text-muted small">
-                    {{ __('Welcome back! Please login to continue.') }}
+                <div class="card-footer bg-black  text-center text-muted small">
+                    <span class="text-warning">{{ __('Welcome back! Please login to continue.') }}</span>
                 </div>
             </div>
         </div>

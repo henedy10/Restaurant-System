@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="card-footer bg-black text-center text-muted small">
-                    {{ __('Enter your email to reset your password') }}
+                    <span class="text-warning">{{ __('Enter your email to reset your password') }}</span>
                 </div>
             </div>
         </div>
