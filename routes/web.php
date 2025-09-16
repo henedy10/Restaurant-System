@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\{Route,Auth};
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::get('/managechefs',function (){
 return view('admin.Manage-Chefs');
 })->name('manage-chef');

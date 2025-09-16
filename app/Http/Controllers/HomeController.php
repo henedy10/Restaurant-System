@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\{Chef,Menu};
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $chefCount=Chef::count();
+        $itemCount=Menu::count();
+        $cheapItem=Menu::select('name','price')->orderBy('price','asc')->first();
+        $expensiveItem=Menu::select('name','price')->orderBy('price','desc')->first();
+
+        return view('admin.dashboard',compact('chefCount','itemCount','cheapItem','expensiveItem'));
     }
+
+
 }
