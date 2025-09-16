@@ -15,10 +15,10 @@
                 <a href="#" class="nav-link active">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Manage Chefs</a>
+                <a href="{{route('manage-chef')}}" class="nav-link">Manage Chefs</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Manage Items</a>
+                <a href="{{route('manage-item')}}" class="nav-link">Manage Items</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link"
