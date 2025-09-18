@@ -5,7 +5,7 @@
     <nav class="navbar navbar-dark bg-black fixed-top">
         <div class="container-fluid">
             <button class="btn btn-warning d-md-none" id="toggleBtn">☰</button>
-            <span class="navbar-brand text-warning">Nice Restaurant [ {{Auth::user()->name}} ]</span>
+            <a href="{{route('index')}}" class="navbar-brand text-warning">Nice Restaurant [ {{Auth::user()->name}} ]</a>
         </div>
     </nav>
     <!-- Sidebar -->
@@ -15,7 +15,7 @@
                 <a href="#" class="nav-link active">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('manage-chef')}}" class="nav-link">Manage Chefs</a>
+                <a href="{{route('chefs.index')}}" class="nav-link">Manage Chefs</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('manage-item')}}" class="nav-link">Manage Items</a>

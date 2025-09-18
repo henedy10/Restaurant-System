@@ -13,7 +13,7 @@
                         <div class="col-lg-4">
                             <div class="chef-highlight" data-aos="fade-right" data-aos-delay="200">
                                 <figure class="chef-image">
-                                    <img src="{{$chef->image}}" class="img-fluid" alt="Executive Chef">
+                                    <img src="{{asset("storage/".$chef->image)}}" class="img-fluid" alt="Executive Chef">
                                 </figure>
                                 <div class="chef-details">
                                         <h3>{{$chef->role}}</h3>
@@ -22,7 +22,7 @@
                                         @forelse ( $chef->awards as $award )
                                             <span><i class="bi bi-star-fill"></i> {{$award->title}} </span>
                                         @empty
-                                        
+
                                         @endforelse
                                     </div>
                                     <p>{{$chef->info}}</p>
