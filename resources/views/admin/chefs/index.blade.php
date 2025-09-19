@@ -80,9 +80,9 @@
                     <td>{{$chef->name}}</td>
                     <td>{{$chef->role}}</td>
                     <td>
-                        <button class="btn btn-sm btn-gold">Edit</button>
+                        <a href="{{route('chefs.edit',$chef->id)}}" class="btn btn-sm btn-gold">Edit</a>
                         <button class="btn btn-sm btn-danger">Delete</button>
-                        <a href="{{route('chefs.show',$chef->name)}}" class="btn btn-sm btn-primary">More Info</a>
+                        <a href="{{route('chefs.show',$chef->id)}}" class="btn btn-sm btn-primary">More Info</a>
                     </td>
                 </tr>
             @empty

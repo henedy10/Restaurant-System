@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Models\{Chef};
 use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\storeChef;
+use App\Http\Requests\admin\{storeChef,updateChef};
 use Illuminate\Http\Request;
 
 class ChefController extends Controller
@@ -13,7 +13,7 @@ class ChefController extends Controller
      */
     public function index()
     {
-        $chefs=Chef::select('name','role')->paginate(8);
+        $chefs=Chef::select('id','name','role')->paginate(8);
         return view('admin.chefs.index',compact('chefs'));
     }
 
@@ -47,26 +47,34 @@ class ChefController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $name)
+    public function show(Chef $chef)
     {
-        $chef=Chef::with('awards')->where('name',$name)->first();
         return view('admin.chefs.show',compact('chef'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Chef $chef)
     {
-        //
+        return view('admin.chefs.edit',compact('chef'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(updateChef $request, Chef $chef)
     {
-        //
+        $imageName = str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
+        $imagePath = $request->file('image')->storeAs('chef_images',$imageName,'public');
+        $chef->update([
+            'name'  => $request->name,
+            'role'  => $request->role,
+            'info'  => $request->info,
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->back()->with('successEditChef','chef is updated successfully');
     }
 
     /**
