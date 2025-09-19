@@ -41,7 +41,7 @@ class ChefController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->back()->with('success','chef is added successfully');
+        return redirect()->back()->with('successAddChef','chef is added successfully');
     }
 
     /**

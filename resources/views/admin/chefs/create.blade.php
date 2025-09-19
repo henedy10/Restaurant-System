@@ -65,7 +65,9 @@
                         <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
                         <input type="text" id="name" name="name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" >
                         @error('name')
-                            <div class="text-danger">{{ $message }}</div>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
 
@@ -73,7 +75,9 @@
                         <label for="role" class="form-label">Role <span class="text-danger">*</span></label>
                         <input type="text" id="role" name="role" value="{{old('role')}}" class="form-control @error('role') is-invalid @enderror" >
                         @error('role')
-                            <div class="text-danger">{{ $message }}</div>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
 
@@ -81,7 +85,9 @@
                         <label for="info" class="form-label">Info <span class="text-danger">*</span></label>
                         <textarea id="info" name="info" rows="3" class="form-control @error('info') is-invalid @enderror" >{{old('info')}}</textarea>
                         @error('info')
-                            <div class="text-danger">{{ $message }}</div>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
 
@@ -89,7 +95,9 @@
                         <label for="image" class="form-label">Upload Image <span class="text-danger">*</span></label>
                         <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" accept="image/*" >
                         @error('image')
-                            <div class="text-danger ">{{ $message }}</div>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                         <small class="text-danger">Limit: 2MB | MIMES: jpeg, png, jpg, webp</small>
                     </div>
@@ -100,6 +108,18 @@
                     </div>
                 </form>
             </div>
+            <div>
+                @if(session('successAddChef'))
+                    <div class="alert alert-success alert-dismissible fade show text-center rounded shadow-sm p-3 mt-2 w-50 mx-auto" role="alert">
+                        <strong>✔️ {{ session('successAddChef') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+            </div>
         </div>
+
+        <!-- Bootstrap JS (Bundle) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>
+
