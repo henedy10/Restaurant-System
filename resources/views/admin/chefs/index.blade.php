@@ -97,6 +97,8 @@
             @endforelse
         </tbody>
     </table>
+    {{-- Pagination --}}
+    {{ $chefs->links('vendor.pagination.bootstrap-4') }}
 </div>
 
 {{-- <!-- Add Chef Modal -->
