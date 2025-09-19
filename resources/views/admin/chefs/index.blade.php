@@ -82,7 +82,7 @@
                     <td>
                         <button class="btn btn-sm btn-gold">Edit</button>
                         <button class="btn btn-sm btn-danger">Delete</button>
-                        <button class="btn btn-sm btn-primary">More Info</button>
+                        <a href="{{route('chefs.show',$chef->name)}}" class="btn btn-sm btn-primary">More Info</a>
                     </td>
                 </tr>
             @empty

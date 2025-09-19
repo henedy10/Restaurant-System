@@ -31,8 +31,8 @@ class ChefController extends Controller
     public function store(storeChef $request)
     {
 
-        $imageName=$request->name.'.'.$request->file('image')->getClientOriginalExtension();
-        $imagePath=$request->file('image')->storeAs('chef_images',$imageName,'public');
+        $imageName = str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
+        $imagePath = $request->file('image')->storeAs('chef_images',$imageName,'public');
 
         Chef::create([
             'name'  => $request->name,
@@ -47,9 +47,10 @@ class ChefController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $name)
     {
-        //
+        $chef=Chef::with('awards')->where('name',$name)->first();
+        return view('admin.chefs.show',compact('chef'));
     }
 
     /**
