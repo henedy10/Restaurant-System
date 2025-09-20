@@ -49,7 +49,8 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $item = Menu::findOrFail($id);
+        return view('admin.items.show',compact('item'));
     }
 
     /**
@@ -57,15 +58,28 @@ class ItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item=Menu::findOrFail($id);
+        return view('admin.items.edit',compact('item'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(updateItem $request, string $id)
     {
-        //
+        $item      = Menu::findOrFail($id);
+        $imageName = str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
+        $imagePath = $request->file('image')->storeAs('item_images',$imageName,'public');
+
+        $item->update([
+            'name'         => $request->name,
+            'type'         => $request->type,
+            'price'        => $request->price,
+            'description'  => $request->description,
+            'image'        => $imagePath,
+        ]);
+
+        return redirect()->back()->with('successEditItem','Item is updated successfully');
     }
 
     /**

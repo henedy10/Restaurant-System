@@ -74,7 +74,7 @@ class ChefController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->back()->with('successEditChef','chef is updated successfully');
+        return redirect()->back()->with('successEditChef','Chef is updated successfully');
     }
 
     /**

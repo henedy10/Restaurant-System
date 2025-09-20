@@ -11,7 +11,7 @@ class updateItem extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class updateItem extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'         => 'required|string|unique:menu,name,' . $this->route('item'),
+            'type'         => 'required|string',
+            'description'  => 'required|string',
+            'price'        => 'required|decimal:0,2',
+            'image'        => 'required|image|mimes:jpeg,png,jpg,webp|max:2048'
         ];
     }
 }
