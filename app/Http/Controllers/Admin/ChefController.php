@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Models\{Chef};
+use App\Models\Chef;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\{storeChef,updateChef};
+use App\Http\Requests\admin\chef\{storeChef,updateChef};
 use Illuminate\Http\Request;
 
 class ChefController extends Controller
@@ -41,7 +41,7 @@ class ChefController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->back()->with('successAddChef','chef is added successfully');
+        return redirect()->back()->with('successAddChef','Chef is added successfully');
     }
 
     /**

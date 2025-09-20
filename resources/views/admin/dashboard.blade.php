@@ -18,7 +18,7 @@
                 <a href="{{route('chefs.index')}}" class="nav-link">Manage Chefs</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('manage-item')}}" class="nav-link">Manage Items</a>
+                <a href="{{route('items.index')}}" class="nav-link">Manage Items</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link"

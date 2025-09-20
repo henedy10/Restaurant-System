@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Chefs</title>
+    <title>Admin - Manage Items</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -47,20 +47,20 @@
 <body>
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Manage Chefs</h2>
+        <h2>Manage Items</h2>
         <!-- Button trigger modal -->
         <div class="d-flex align-items-center gap-3 mb-3">
             <a href="{{route('home')}}" class="nav-link">Home</a>
 
-            <a href="{{route('chefs.create')}}" class="btn btn-gold" >
-                Add Chef
+            <a href="{{route('items.create')}}" class="btn btn-gold" >
+                Add Item
             </a>
         </div>
     </div>
 
     <!-- Search -->
     <div class="mb-3">
-        <input type="text" class="form-control placeholder-gold" placeholder="Search Chefs...">
+        <input type="text" class="form-control placeholder-gold" placeholder="Search Items...">
     </div>
 
     <!-- Chefs Table -->
@@ -69,20 +69,22 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Role</th>
+                <th>Type</th>
+                <th>Price</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ( $chefs as $chef )
+            @forelse ( $items as $item )
                 <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$chef->name}}</td>
-                    <td>{{$chef->role}}</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->type}}</td>
+                    <td>{{$item->price}} $</td>
                     <td>
-                        <a href="{{route('chefs.edit',$chef->id)}}" class="btn btn-sm btn-gold">Edit</a>
+                        <a href="{{route('items.edit',$item->id)}}" class="btn btn-sm btn-gold">Edit</a>
                         <button class="btn btn-sm btn-danger">Delete</button>
-                        <a href="{{route('chefs.show',$chef->id)}}" class="btn btn-sm btn-primary">More Info</a>
+                        <a href="{{route('items.show',$item->id)}}" class="btn btn-sm btn-primary">More Info</a>
                     </td>
                 </tr>
             @empty
@@ -90,7 +92,7 @@
                     <div class="alert alert-warning d-flex align-items-center shadow-sm border-0" role="alert" style="background-color:#2c2c2c; color:#f8d7da;">
                         <i class="bi bi-exclamation-triangle-fill me-2" style="color:#dc3545; font-size:1.2rem;"></i>
                         <div>
-                            There is no Chef!
+                            There is no Items!
                         </div>
                     </div>
                 </div>
@@ -98,7 +100,7 @@
         </tbody>
     </table>
     {{-- Pagination --}}
-    {{ $chefs->links('vendor.pagination.bootstrap-4') }}
+    {{ $items->links('vendor.pagination.bootstrap-4') }}
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
