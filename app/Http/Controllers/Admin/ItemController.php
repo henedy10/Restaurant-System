@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\item\{storeItem,updateItem};
+use App\Models\client\Subscriber;
 use App\Models\Menu;
+use App\Notifications\NewItem;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -40,6 +43,13 @@ class ItemController extends Controller
             'price'        => $request->price,
             'image'        => $imagePath,
         ]);
+
+        // send notification to subscribe when creation new item
+        Subscriber::chunkById(20, function (Collection $subscribersEmails){
+            foreach($subscribersEmails as $subscribersEmail){
+                $subscribersEmail->notify(new NewItem($subscribersEmail->email));
+            }
+        });
 
         return redirect()->back()->with('successAddItem','Item is added successfully');
     }
@@ -88,5 +98,13 @@ class ItemController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Display the specified new item.
+     */
+    public function newItem(){
+        $item=Menu::latest()->first();
+        return view('admin.items.newItem',compact('item'));
     }
 }

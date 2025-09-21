@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\{Route,Auth};
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/new-item',[ItemController::class,'newItem'])->name('newItem');
 
 Route::resource('chefs',ChefController::class);
 Route::resource('items',ItemController::class);
