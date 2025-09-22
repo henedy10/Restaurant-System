@@ -42,67 +42,27 @@
             opacity: 1;       /* عشان مايبقاش باهت */
         }
     </style>
+    @livewireStyles
 </head>
 
 <body>
-<div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Manage Items</h2>
-        <!-- Button trigger modal -->
-        <div class="d-flex align-items-center gap-3 mb-3">
-            <a href="{{route('home')}}" class="nav-link">Home</a>
+    <div class="container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Manage Items</h2>
+            <!-- Button trigger modal -->
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <a href="{{route('home')}}" class="nav-link">Home</a>
 
-            <a href="{{route('items.create')}}" class="btn btn-gold" >
-                Add Item
-            </a>
+                <a href="{{route('items.create')}}" class="btn btn-gold" >
+                    Add Item
+                </a>
+            </div>
         </div>
+
+        @livewire('search-item-component')
     </div>
 
-    <!-- Search -->
-    <div class="mb-3">
-        <input type="text" class="form-control placeholder-gold" placeholder="Search Items...">
-    </div>
-
-    <!-- Chefs Table -->
-    <table class="table table-dark table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Price</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ( $items as $item )
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$item->name}}</td>
-                    <td>{{$item->type}}</td>
-                    <td>{{$item->price}} $</td>
-                    <td>
-                        <a href="{{route('items.edit',$item->id)}}" class="btn btn-sm btn-gold">Edit</a>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                        <a href="{{route('items.show',$item->id)}}" class="btn btn-sm btn-primary">More Info</a>
-                    </td>
-                </tr>
-            @empty
-                <div class="container mt-4">
-                    <div class="alert alert-warning d-flex align-items-center shadow-sm border-0" role="alert" style="background-color:#2c2c2c; color:#f8d7da;">
-                        <i class="bi bi-exclamation-triangle-fill me-2" style="color:#dc3545; font-size:1.2rem;"></i>
-                        <div>
-                            There is no Items!
-                        </div>
-                    </div>
-                </div>
-            @endforelse
-        </tbody>
-    </table>
-    {{-- Pagination --}}
-    {{ $items->links('vendor.pagination.bootstrap-4') }}
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @livewireScripts
 </body>
 </html>

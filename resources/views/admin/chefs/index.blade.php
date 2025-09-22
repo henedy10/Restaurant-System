@@ -42,6 +42,7 @@
             opacity: 1;       /* عشان مايبقاش باهت */
         }
     </style>
+    @livewireStyles
 </head>
 
 <body>
@@ -58,12 +59,9 @@
         </div>
     </div>
 
-    <!-- Search -->
-    <div class="mb-3">
-        <input type="text" class="form-control placeholder-gold" placeholder="Search Chefs...">
-    </div>
 
-    <!-- Chefs Table -->
+    @livewire('search-chef-component')
+    {{-- <!-- Chefs Table -->
     <table class="table table-dark table-striped">
         <thead>
             <tr>
@@ -74,6 +72,7 @@
             </tr>
         </thead>
         <tbody>
+
             @forelse ( $chefs as $chef )
                 <tr>
                     <td>{{$loop->iteration}}</td>
@@ -96,11 +95,11 @@
                 </div>
             @endforelse
         </tbody>
-    </table>
-    {{-- Pagination --}}
-    {{ $chefs->links('vendor.pagination.bootstrap-4') }}
+    </table> --}}
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@livewireScripts
 </body>
 </html>
