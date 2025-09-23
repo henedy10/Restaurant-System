@@ -2,23 +2,22 @@
 
 namespace App\Livewire;
 use App\Models\Menu;
+use Livewire\WithPagination;
 use Livewire\Component;
 
 class SearchItemComponent extends Component
 {
-    public $query   = '';
-    public $results = [];
+    use WithPagination;
+    public $query = '';
 
-    public function searchQuery(){
-        $this->results = Menu::where('name'  ,'LIKE','%' . $this->query . '%')
-                            ->orWhere('type' ,'LIKE','%' . $this->query . '%')
-                            ->get();
+    public function updatedQuery(){
+        $this->resetPage();
     }
     public function render()
     {
-        if($this->query === ''){
-            $this->results = Menu::all();
-        }
-        return view('livewire.search-item-component');
+        $results = Menu::where   ('name' ,'LIKE','%' . $this->query . '%')
+                        ->orWhere('type' ,'LIKE','%' . $this->query . '%')
+                        ->simplePaginate(8);
+        return view('livewire.search-item-component',['results' => $results]);
     }
 }

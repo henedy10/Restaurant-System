@@ -1,7 +1,7 @@
 <div>
     <!-- Search -->
     <div class="mb-3">
-        <input type="text" wire:model="query" wire:keyup="searchQuery" class="form-control placeholder-gold" placeholder="Search Items...">
+        <input type="text" wire:model.live="query" class="form-control placeholder-gold" placeholder="Search Items...">
     </div>
 
     <!-- Chefs Table -->
@@ -21,7 +21,7 @@
         <tbody>
             @forelse ( $results as $result )
                 <tr>
-                    <td>{{$loop->iteration}}</td>
+                    <td>{{($results->firstItem() ?? 0) + $loop->index}}</td>
                     <td>{{$result->name}}</td>
                     <td>{{$result->type}}</td>
                     <td>{{$result->price}} $</td>
@@ -43,4 +43,5 @@
             @endforelse
         </tbody>
     </table>
+        {{ $results->links('livewire::simple-bootstrap') }}
 </div>

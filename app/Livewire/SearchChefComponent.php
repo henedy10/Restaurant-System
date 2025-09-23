@@ -1,25 +1,25 @@
 <?php
 
 namespace App\Livewire;
+use Livewire\WithPagination;
 use App\Models\Chef;
 use Livewire\Component;
 
 class SearchChefComponent extends Component
 {
-    public $query   = '';
-    public $results = [];
+    use WithPagination;
+    public $query = '';
 
-    public function searchQuery(){
-        $this->results = Chef::where('name'  ,'LIKE','%' . $this->query . '%')
-                            ->orWhere('role' ,'LIKE','%' . $this->query . '%')
-                            ->get();
+    public function updatedQuery()
+    {
+        $this->resetPage();
     }
 
     public function render()
     {
-        if($this->query === ''){
-            $this->results = Chef::all();
-        }
-        return view('livewire.search-chef-component');
+        $results = Chef::where   ('name' ,'LIKE','%' . $this->query . '%')
+                        ->orWhere('role' ,'LIKE','%' . $this->query . '%')
+                        ->simplePaginate(8);
+        return view('livewire.search-chef-component',['results' => $results]);
     }
 }

@@ -13,8 +13,7 @@ class ChefController extends Controller
      */
     public function index()
     {
-        $chefs=Chef::select('id','name','role')->paginate(8);
-        return view('admin.chefs.index',compact('chefs'));
+        return view('admin.chefs.index');
     }
 
     // /**

@@ -59,43 +59,7 @@
         </div>
     </div>
 
-
     @livewire('search-chef-component')
-    {{-- <!-- Chefs Table -->
-    <table class="table table-dark table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @forelse ( $chefs as $chef )
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$chef->name}}</td>
-                    <td>{{$chef->role}}</td>
-                    <td>
-                        <a href="{{route('chefs.edit',$chef->id)}}" class="btn btn-sm btn-gold">Edit</a>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                        <a href="{{route('chefs.show',$chef->id)}}" class="btn btn-sm btn-primary">More Info</a>
-                    </td>
-                </tr>
-            @empty
-                <div class="container mt-4">
-                    <div class="alert alert-warning d-flex align-items-center shadow-sm border-0" role="alert" style="background-color:#2c2c2c; color:#f8d7da;">
-                        <i class="bi bi-exclamation-triangle-fill me-2" style="color:#dc3545; font-size:1.2rem;"></i>
-                        <div>
-                            There is no Chef!
-                        </div>
-                    </div>
-                </div>
-            @endforelse
-        </tbody>
-    </table> --}}
 
 </div>
 
