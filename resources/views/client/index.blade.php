@@ -9,7 +9,7 @@
 
         @include('client.sections.menu')
 
-        @include('client.sections.testimonials')
+        {{-- @include('client.sections.testimonials') --}}
 
         @include('client.sections.chefs')
 
@@ -17,7 +17,7 @@
 
         @include('client.sections.location')
 
-        @include('client.sections.events')
+        {{-- @include('client.sections.events') --}}
 
         @include('client.sections.contact')
     </main>

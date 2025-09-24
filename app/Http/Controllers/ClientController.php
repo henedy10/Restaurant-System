@@ -27,9 +27,9 @@ class ClientController extends Controller
 {
     public function index(){
 
-        $Menu = Menu::where('special',0)->get();
+        $Menu        = Menu::where('special',0)->get();
         $specialMenu = Menu::where('special',1)->get();
-        $chefs = Chef::with('awards')->get();
+        $chefs       = Chef::with('awards')->get();
         return view('client.index',compact('Menu','specialMenu','chefs'));
     }
 
@@ -43,7 +43,7 @@ class ClientController extends Controller
 
     public function storeSubscribers(storeSubsribers $request){
 
-        $validated=$request->validated();
+        $validated = $request->validated();
         Subscriber::create($validated);
         Mail::to($validated['email'])->send(new SubscribeConfirmedMail($validated));
         return redirect()->back()->with('success','تم تسجيل الحساب بنجاح');
@@ -51,7 +51,7 @@ class ClientController extends Controller
 
     public function storeContactMessage(storeContactMessage $request){
 
-        $validated=$request->validated();
+        $validated = $request->validated();
         Contact::create($validated);
         return redirect()->back()->with('contactMsgSuccess','تم تسجيل الرسالة بنجاح');
     }

@@ -7,7 +7,7 @@ use App\Http\Requests\admin\item\{storeItem,updateItem};
 use App\Models\client\Subscriber;
 use App\Models\Menu;
 use App\Notifications\NewItem;
-use Illuminate\Http\Request;
+
 
 class ItemController extends Controller
 {
@@ -97,13 +97,15 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Menu::findOrFail($id)->delete();
+        return redirect()->back()->with('successDeleteItem','Item is deleted successfully');
     }
 
     /**
      * Display the specified new item.
      */
-    public function newItem(){
+    public function newItem()
+    {
         $item=Menu::latest()->first();
         return view('admin.items.newItem',compact('item'));
     }

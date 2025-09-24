@@ -32,7 +32,7 @@
 
                                 <div class="col-lg-6 isotope-item {{$filterClass}}">
                                     <div class="menu-item d-flex align-items-center gap-4">
-                                        <img src="{{$Category->image}}" alt="Starter" class="menu-img img-fluid rounded-3">
+                                        <img src="{{asset("storage/" . $Category->image)}}" alt="Starter" class="menu-img img-fluid rounded-3">
                                         <div class="menu-content">
                                             <h5>{{$Category->name}}<span class="menu-tag">{{$Category->type}}</span></h5>
                                             <p>{{$Category->description}}</p>

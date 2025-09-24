@@ -4,6 +4,15 @@
         <input type="text" wire:model.live="query" class="form-control placeholder-gold" placeholder="Search Items...">
     </div>
 
+    <div>
+        @if(session('successDeleteItem'))
+            <div class="alert alert-success alert-dismissible fade show text-center rounded shadow-sm p-3 mt-2 w-50 mx-auto" role="alert">
+                <strong>✔️ {{ session('successDeleteItem') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+    </div>
+
     <!-- Chefs Table -->
     <table class="table table-dark table-striped">
         @if ($results->count() > 0)
@@ -25,9 +34,13 @@
                     <td>{{$result->name}}</td>
                     <td>{{$result->type}}</td>
                     <td>{{$result->price}} $</td>
-                    <td>
+                    <td class="d-flex">
                         <a href="{{route('items.edit',$result->id)}}" class="btn btn-sm btn-gold">Edit</a>
-                        <button class="btn btn-sm btn-danger">Delete</button>
+                        <form action="{{route('items.destroy',$result->id)}}" method="POST" onsubmit="return confirmDelete();">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
                         <a href="{{route('items.show',$result->id)}}" class="btn btn-sm btn-primary">More Info</a>
                     </td>
                 </tr>
@@ -36,7 +49,7 @@
                     <div class="alert alert-warning d-flex align-items-center shadow-sm border-0" role="alert" style="background-color:#2c2c2c; color:#f8d7da;">
                         <i class="bi bi-exclamation-triangle-fill me-2" style="color:#dc3545; font-size:1.2rem;"></i>
                         <div>
-                            There is no item matching!
+                            There is no items !
                         </div>
                     </div>
                 </div>

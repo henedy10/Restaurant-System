@@ -45,7 +45,7 @@
                         <li><a href="#menu">Menu</a></li>
                         <li><a href="#book-a-table">Book a Table</a></li>
                         <li><a href="#chefs">Chefs</a></li>
-                        <li><a href="#events">Events</a></li>
+                        {{-- <li><a href="#events">Events</a></li> --}}
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('menu', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('type');
+            $table->enum('type',['Dessert','Drink','Main-Course']);
             $table->decimal('price');
             $table->text('description');
             $table->string('image');

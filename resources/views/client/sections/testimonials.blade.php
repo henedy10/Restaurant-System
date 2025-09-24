@@ -1,4 +1,4 @@
-        <!-- Testimonials Section -->
+        {{-- <!-- Testimonials Section -->
         <section id="testimonials" class="testimonials section">
 
             <!-- Section Title -->
@@ -130,4 +130,4 @@
             </div>
 
         </section>
-        <!-- /Testimonials Section -->
+        <!-- /Testimonials Section --> --}}

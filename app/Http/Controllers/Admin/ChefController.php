@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Chef;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\chef\{storeChef,updateChef};
-use Illuminate\Http\Request;
 
 class ChefController extends Controller
 {
@@ -79,8 +78,9 @@ class ChefController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Chef $chef)
     {
-        //
+        $chef->delete();
+        return redirect()->back()->with('successDeleteChef','Chef is deleted successfully');
     }
 }

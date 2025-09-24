@@ -1,4 +1,4 @@
-        <!-- Events Section -->
+        {{-- <!-- Events Section -->
         <section id="events" class="events section">
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -112,4 +112,4 @@
             </div>
 
         </section>
-        <!-- /Events Section -->
+        <!-- /Events Section --> --}}
