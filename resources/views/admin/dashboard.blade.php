@@ -54,11 +54,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="col">
                 <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
                     <div class="card-body">
                         <h5 class="card-title fw-bold" style="color: #FFD700;">Expensive Item</h5>
-                        <p class="card-text fs-5">{{$expensiveItem->name.' '.'[ '.$expensiveItem->price.' $]'}}</p>
+                        <p class="card-text fs-5"> {{ !is_null($expensiveItem) ? $expensiveItem->name.' '.'[ '.$expensiveItem->price.' $]' : "-"}}</p>
                     </div>
                 </div>
             </div>
@@ -66,7 +67,7 @@
                 <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
                     <div class="card-body">
                         <h5 class="card-title fw-bold" style="color: #FFD700;"> Cheapest Item</h5>
-                        <p class="card-text fs-5">{{$cheapItem->name.' '.'[ '.$cheapItem->price.' $]'}}</p>
+                        <p class="card-text fs-5">{{ !is_null($expensiveItem) ? $cheapItem->name.' '.'[ '.$cheapItem->price.' $]' : "-"}}</p>
                     </div>
                 </div>
             </div>
