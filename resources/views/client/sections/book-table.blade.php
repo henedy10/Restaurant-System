@@ -65,8 +65,8 @@
                                     </div>
 
                                     <div class="col-lg-4 form-group">
-                                        <input type="email" class="form-control" name="email" placeholder="Your Email" value="{{old('email')}}" >
-                                        @error('email')
+                                        <input type="email" class="form-control" name="email_booking" placeholder="Your Email" value="{{old('email_booking')}}" >
+                                        @error('email_booking')
                                             <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                         @enderror
                                     </div>

@@ -22,17 +22,17 @@ class storeContactMessage extends FormRequest
     public function rules(): array
     {
         return [
-            'firstName'  => 'required',
-            'email'      => 'required|email:rfc,dns|exists:subscribers,email',
-            'subject'    => 'required',
-            'message'    => 'required',
+            'firstName'          => 'required',
+            'email_contact'      => 'required|email:rfc,dns|exists:subscribers,email',
+            'subject'            => 'required',
+            'message'            => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'email.exists' => 'You must subscribe first',
+            'email_contact.exists' => 'You must subscribe first',
         ];
     }
 }

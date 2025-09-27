@@ -83,9 +83,9 @@
                                         <div class="form-group">
                                             <div class="input-with-icon">
                                                 <i class="bi bi-envelope"></i>
-                                                <input type="email" class="form-control" name="email" placeholder="Email Address" >
+                                                <input type="email" class="form-control" name="email_contact" placeholder="Email Address" >
                                             </div>
-                                            @error('email')
+                                            @error('email_contact')
                                                 <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                             @enderror
                                         </div>

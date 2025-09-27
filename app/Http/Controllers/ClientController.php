@@ -37,7 +37,7 @@ class ClientController extends Controller
     {
         $validated = $request->validated();
         BookingRoom::create($validated);
-        Mail::to($validated['email'])->send(new BookingConfirmedMail($validated));
+        Mail::to($validated['email_booking'])->send(new BookingConfirmedMail($validated));
         return redirect()->back()->with('success','تم تسجيل الحجز بنجاح');
     }
 

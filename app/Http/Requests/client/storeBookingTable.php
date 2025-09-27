@@ -22,12 +22,12 @@ class storeBookingTable extends FormRequest
     public function rules(): array
     {
         return [
-            'name'    => 'required|string',
-            'email'   => 'required|email:rfc,dns',
-            'phone'   => 'required|digits:11',
-            'people'  => 'required|min:1|max:6',
-            'date'    => 'required|date',
-            'time'    => 'required|date_format:H:i',
+            'name'            => 'required|string',
+            'email_booking'   => 'required|email:rfc,dns',
+            'phone'           => 'required|digits:11',
+            'people'          => 'required|min:1|max:6',
+            'date'            => 'required|date',
+            'time'            => 'required|date_format:H:i',
         ];
     }
 }
