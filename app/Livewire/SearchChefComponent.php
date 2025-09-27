@@ -17,9 +17,13 @@ class SearchChefComponent extends Component
 
     public function render()
     {
-        $results = Chef::where   ('name' ,'LIKE','%' . $this->query . '%')
-                        ->orWhere('role' ,'LIKE','%' . $this->query . '%')
-                        ->simplePaginate(8);
+        if(!empty($this->query)){
+            $results = Chef::where   ('name' ,'LIKE','%' . $this->query . '%')
+                            ->orWhere('role' ,'LIKE','%' . $this->query . '%')
+                            ->simplePaginate(8);
+        }else{
+            $results = Chef::simplePaginate(8);
+        }
         return view('livewire.search-chef-component',['results' => $results]);
     }
 }

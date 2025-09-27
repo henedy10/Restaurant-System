@@ -20,6 +20,9 @@
             <li class="nav-item">
                 <a href="{{route('items.index')}}" class="nav-link">Manage Items</a>
             </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Manage Sys.</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link"
                 href="{{ route('logout') }}"

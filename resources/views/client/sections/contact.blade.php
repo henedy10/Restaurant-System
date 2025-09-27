@@ -74,7 +74,7 @@
                                                 <input type="text" class="form-control" name="firstName" placeholder="First Name" >
                                             </div>
                                             @error('firstName')
-                                                <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                                <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -86,7 +86,7 @@
                                                 <input type="email" class="form-control" name="email" placeholder="Email Address" >
                                             </div>
                                             @error('email')
-                                                <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                                <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -98,7 +98,7 @@
                                                 <input type="text" class="form-control" name="subject" placeholder="Subject" >
                                             </div>
                                             @error('subject')
-                                                <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                                <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                                                 <textarea class="form-control" name="message" placeholder="Write Message..." style="height: 180px" ></textarea>
                                             </div>
                                             @error('message')
-                                                <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                                <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -133,4 +133,4 @@
             @endif
 
         </section>
-        <!-- /Contact Section -->
+        <!-- /Cotext-danger"* ".

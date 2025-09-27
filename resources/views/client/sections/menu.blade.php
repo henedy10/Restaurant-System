@@ -9,7 +9,8 @@
             <!-- End Section Title -->
 
             <div class="container" data-aos="fade-up">
-                <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+                @if ($Menu->count() > 0)
+                    <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
                         <div class="menu-filters isotope-filters mb-5">
                             <ul>
                                 <li data-filter="*" class="filter-active">All</li>
@@ -21,7 +22,7 @@
 
                         <div class="menu-container isotope-container row gy-4">
                             <!-- Regular Menu Items -->
-                            @forelse ( $Menu as $Category )
+                            @foreach ( $Menu as $Category )
                                 @php
                                     $filterClass = match($Category->type){
                                         'Dessert'  => 'filter-dessert' ,
@@ -40,18 +41,24 @@
                                         </div>
                                     </div>
                                 </div>
-
-                            @empty
-                                <p class="text-danger fs-3"> * There is no menu now </p>
-                            @endforelse
+                            @endforeach
                         </div>
                     </div>
-
                     <div class="text-center mt-5" data-aos="fade-up">
                         <a href="{{route('downloadMenu')}}" download class="download-menu">
                             <i class="bi bi-file-earmark-pdf"></i> Download Full Menu
                         </a>
                     </div>
+                @else
+                    <div class="container mt-4">
+                        <div class="alert alert-warning d-flex align-items-center shadow-sm border-0" role="alert" style="background-color:#2c2c2c; color:#f8d7da;">
+                            <i class="bi bi-exclamation-triangle-fill me-2" style="color:#dc3545; font-size:1.2rem;"></i>
+                            <div>
+                                There is no Menu available now!
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
                     <!-- Chef's Specials -->
                     <div class="col-12 mt-5" data-aos="fade-up">

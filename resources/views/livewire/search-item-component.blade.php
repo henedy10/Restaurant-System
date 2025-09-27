@@ -34,9 +34,9 @@
                     <td>{{$result->name}}</td>
                     <td>{{$result->type}}</td>
                     <td>{{$result->price}} $</td>
-                    <td class="d-flex">
+                    <td>
                         <a href="{{route('items.edit',$result->id)}}" class="btn btn-sm btn-gold">Edit</a>
-                        <form action="{{route('items.destroy',$result->id)}}" method="POST" onsubmit="return confirmDelete();">
+                        <form action="{{route('items.destroy',$result->id)}}" method="POST" onsubmit="return confirmDelete();" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>

@@ -13,11 +13,16 @@ class SearchItemComponent extends Component
     public function updatedQuery(){
         $this->resetPage();
     }
+
     public function render()
     {
-        $results = Menu::where   ('name' ,'LIKE','%' . $this->query . '%')
-                        ->orWhere('type' ,'LIKE','%' . $this->query . '%')
-                        ->simplePaginate(8);
+        if(!empty($this->query)){
+            $results = Menu::where   ('name' ,'LIKE','%' . $this->query . '%')
+                            ->orWhere('type' ,'LIKE','%' . $this->query . '%')
+                            ->simplePaginate(8);
+        }else{
+            $results = Menu::simplePaginate(8);
+        }
         return view('livewire.search-item-component',['results' => $results]);
     }
 }

@@ -25,39 +25,39 @@ use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
-    public function index(){
-
+    public function index()
+    {
         $Menu        = Menu::where('special',0)->get();
         $specialMenu = Menu::where('special',1)->get();
         $chefs       = Chef::with('awards')->get();
         return view('client.index',compact('Menu','specialMenu','chefs'));
     }
 
-    public function storeBookingTable(storeBookingTable $request){
-
+    public function storeBookingTable(storeBookingTable $request)
+    {
         $validated = $request->validated();
         BookingRoom::create($validated);
         Mail::to($validated['email'])->send(new BookingConfirmedMail($validated));
         return redirect()->back()->with('success','تم تسجيل الحجز بنجاح');
     }
 
-    public function storeSubscribers(storeSubsribers $request){
-
+    public function storeSubscribers(storeSubsribers $request)
+    {
         $validated = $request->validated();
         Subscriber::create($validated);
         Mail::to($validated['email'])->send(new SubscribeConfirmedMail($validated));
         return redirect()->back()->with('success','تم تسجيل الحساب بنجاح');
     }
 
-    public function storeContactMessage(storeContactMessage $request){
-
+    public function storeContactMessage(storeContactMessage $request)
+    {
         $validated = $request->validated();
         Contact::create($validated);
         return redirect()->back()->with('contactMsgSuccess','تم تسجيل الرسالة بنجاح');
     }
 
-    public function downloadMenu(){
-
+    public function downloadMenu()
+    {
         return response()->download(storage_path('app/public/Menu.jpg'));
     }
 }

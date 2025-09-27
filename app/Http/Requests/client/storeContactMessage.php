@@ -32,7 +32,7 @@ class storeContactMessage extends FormRequest
     public function messages(): array
     {
         return [
-            'email.exists' => 'You must subsribe first',
+            'email.exists' => 'You must subscribe first',
         ];
     }
 }

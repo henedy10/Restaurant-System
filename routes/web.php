@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\{Route,Auth};
 
 
 Auth::routes();
-
+Route::get('/manageSys',function(){
+    return view('admin.manageSys');
+});
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/new-item',[ItemController::class,'newItem'])->name('newItem');
 

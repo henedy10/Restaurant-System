@@ -30,6 +30,4 @@ class HomeController extends Controller
 
         return view('admin.dashboard',compact('chefCount','itemCount','cheapItem','expensiveItem'));
     }
-
-
 }

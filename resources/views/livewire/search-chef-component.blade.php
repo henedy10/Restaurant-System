@@ -32,11 +32,12 @@
                     <td>{{($results->firstItem() ?? 0) + $loop->index}}</td>
                     <td>{{$result->name}}</td>
                     <td>{{$result->role}}</td>
-                    <td class="d-flex">
+                    <td>
                         <a href="{{route('chefs.edit',$result->id)}}" class="btn btn-sm btn-gold">Edit</a>
                         <form   action="{{route('chefs.destroy',$result->id)}}"
                                 method="POST"
                                 onsubmit="return confirmDelete();"
+                                style="display: inline;"
                         >
                             @csrf
                             @method('DELETE')

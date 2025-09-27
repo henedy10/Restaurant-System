@@ -60,21 +60,21 @@
                                     <div class="col-lg-4 form-group">
                                         <input type="text" name="name"  class="form-control" placeholder="Your Name" value="{{old('name')}}" >
                                         @error('name')
-                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                            <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-lg-4 form-group">
                                         <input type="email" class="form-control" name="email" placeholder="Your Email" value="{{old('email')}}" >
                                         @error('email')
-                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                            <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-lg-4 form-group">
                                         <input type="text" class="form-control" name="phone" placeholder="Your Phone" value="{{old('phone')}}" >
                                         @error('phone')
-                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                            <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                         @enderror
                                     </div>
 
@@ -89,28 +89,28 @@
                                             <option value="6">6 People</option>
                                         </select>
                                             @error('people')
-                                                <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                                <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                             @enderror
                                     </div>
 
                                     <div class="col-lg-4 form-group">
                                         <input type="date" name="date" class="form-control" placeholder="Date" value="{{old('date')}}" >
                                         @error('date')
-                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                            <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-lg-4 form-group">
                                         <input type="time" class="form-control" name="time" id="time" placeholder="Time" value="{{old('time')}}" >
                                         @error('time')
-                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                            <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="form-group mt-4">
                                         <textarea class="form-control" name="message" rows="3" placeholder="Special Requests (Optional)" value="{{old('message')}}"></textarea>
                                         @error('message')
-                                            <div class="alert alert-danger mt-2 p-1 small">{{ $message }}</div>
+                                            <div class="text-danger mt-2 p-1 small">{{"* ".$message }}</div>
                                         @enderror
                                     </div>
                                 </div>
