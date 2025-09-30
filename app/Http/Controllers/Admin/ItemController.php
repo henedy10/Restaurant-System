@@ -68,7 +68,7 @@ class ItemController extends Controller
      */
     public function edit(string $id)
     {
-        $item=Menu::findOrFail($id);
+        $item = Menu::findOrFail($id);
         return view('admin.items.edit',compact('item'));
     }
 
@@ -106,7 +106,7 @@ class ItemController extends Controller
      */
     public function newItem()
     {
-        $item=Menu::latest()->first();
+        $item = Menu::latest()->first();
         return view('admin.items.newItem',compact('item'));
     }
 }

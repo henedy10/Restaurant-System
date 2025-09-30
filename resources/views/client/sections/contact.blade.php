@@ -19,7 +19,7 @@
                             </div>
                             <div class="info-content">
                                 <h4>Our Address</h4>
-                                <p>1842 Maple Avenue, Portland, Oregon 97204</p>
+                                <p>{{$info->address}}</p>
                             </div>
                         </div>
                     </div>
@@ -31,8 +31,7 @@
                             </div>
                             <div class="info-content">
                                 <h4>Email Address</h4>
-                                <p>info@example.com</p>
-                                <p>contact@example.com</p>
+                                <p>{{$info->email}}</p>
                             </div>
                         </div>
                     </div>

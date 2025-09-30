@@ -4,7 +4,7 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
             <h2>Location</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+            <p>{{$info->address}}</p>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="info-content">
                         <h3>Our Location</h3>
-                        <p>123 Culinary Avenue, Manhattan, NY 10001</p>
+                        <p>{{$info->address}}</p>
                     </div>
                     </div>
 
@@ -39,7 +39,7 @@
                     </div>
                     <div class="info-content">
                         <h3>Reservations</h3>
-                        <p>+1 (212) 555-7890</p>
+                        <p>{{$info->phone}}</p>
                         <p class="small-text">We recommend making reservations at least 48 hours in advance</p>
                     </div>
                     </div>

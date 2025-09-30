@@ -22,8 +22,7 @@
                                         <i class="bi bi-geo-alt"></i>
                                         <div>
                                             <h5>Location</h5>
-                                            <p>1234 Main Street, Suite 100<br>
-                                            Boston, MA 02110</p>
+                                            <p>{{$info->address}}</p>
                                         </div>
                                     </div>
 
@@ -31,7 +30,7 @@
                                         <i class="bi bi-telephone"></i>
                                         <div>
                                             <h5>Call Us</h5>
-                                            <p>+1 (617) 555-1234</p>
+                                            <p>{{$info->phone}}</p>
                                         </div>
                                     </div>
                                 </div>

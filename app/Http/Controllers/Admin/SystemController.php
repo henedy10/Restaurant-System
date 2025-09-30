@@ -3,17 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\admin\system\storeInfo;
+use App\Models\RestaurantInfo;
 
 class SystemController extends Controller
 {
     public function index()
     {
-        return view('admin/manageSys');
+        $info = RestaurantInfo::latest()->first();
+        return view('admin/manageSys',compact('info'));
     }
 
-    public function storeInfo()
+    public function storeInfo(storeInfo $request)
     {
-        return "hello";
+        $validated = $request->validated();
+        RestaurantInfo::updateOrInsert($validated);
+
+        return redirect()->back()->with(['successMsg' => 'Info stored successfully']);
     }
 }

@@ -35,17 +35,26 @@
                             <div class="row g-2">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label accent">Email <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control bg-dark text-white" id="email" >
+                                    <input type="email" name="email" class="form-control bg-dark text-white" id="email" value="{{old('email',$info->email??" ")}}" >
+                                    <span class="text-danger">
+                                        @error('email') {{"* ".$message}} @enderror
+                                    </span>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label accent">Phone Number</label>
-                                    <input type="tel" class="form-control bg-dark text-white" id="phone" >
+                                    <label class="form-label accent">Phone Number <span class="text-danger">*</span></label>
+                                    <input type="tel" name="phone" class="form-control bg-dark text-white" id="phone" value="{{old('phone',$info->phone??" ")}}"  >
+                                    <span class="text-danger">
+                                        @error('phone') {{"* ".$message}} @enderror
+                                    </span>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label accent">Address <span class="text-danger">*</span></label>
-                                <textarea class="form-control bg-dark text-white" id="address" rows="2"></textarea>
+                                <textarea class="form-control bg-dark text-white" name="address" id="address" rows="2">{{old('address',$info->address??" ")}}</textarea>
+                                <span class="text-danger">
+                                    @error('address') {{"* ".$message}} @enderror
+                                </span>
                             </div>
 
                             <div class="d-flex justify-content-end gap-2">
@@ -53,6 +62,13 @@
                                 <button type="reset" class="btn btn-outline-light">Reset</button>
                             </div>
                         </form>
+
+                        @if (session('successMsg'))
+                            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                                <strong>✅ Success!</strong> {{ session('successMsg') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
 
                         <hr class="border-secondary">
 
