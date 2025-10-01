@@ -49,20 +49,13 @@
                         <i class="bi bi-clock"></i>
                     </div>
                     <div class="info-content">
-                        <h3>Hours</h3>
-                        <div class="hours-grid">
-                        <div class="day">Monday - Thursday</div>
-                        <div class="time">11:00 AM - 10:00 PM</div>
+                        <h3>Opening Hours</h3>
+                        <?php use Carbon\Carbon; ?>
+                        @forelse ($openingHours as $openingHour )
+                            <p>{{$openingHour->from_day.' - '.$openingHour->to_day.': '.Carbon::parse($openingHour->from_time)->format('h:i A').' - '.Carbon::parse($openingHour->to_time)->format('h:i A')}}</p>
+                        @empty
 
-                        <div class="day">Friday - Saturday</div>
-                        <div class="time">11:00 AM - 11:30 PM</div>
-
-                        <div class="day">Sunday</div>
-                        <div class="time">10:00 AM - 9:00 PM</div>
-
-                        <div class="day">Brunch Hours</div>
-                        <div class="time">Sat &amp; Sun, 10:00 AM - 2:00 PM</div>
-                        </div>
+                        @endforelse
                     </div>
                     </div>
 

@@ -72,15 +72,63 @@
 
                         <hr class="border-secondary">
 
-                        <form method="POST">
-                            @csrf
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <h5 class="mb-0 accent">Opening Hours</h5>
-                                <small class="text-danger">* Add more than one period per day if necessary.</small>
-                            </div>
-                            @livewire('new-period')
-                        </form>
+                        <?php use Carbon\Carbon; ?>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="mb-0 accent">Opening Hours</h5>
+                            <small class="text-danger">* Add more than one period per day if necessary.</small>
+                        </div>
+
+                        <table class="table table-dark table-striped">
+                            @if ($openingHours->count() > 0)
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>From_Day</th>
+                                        <th>To_Day</th>
+                                        <th>From_Time</th>
+                                        <th>To_Time</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            @endif
+
+                            <tbody>
+                                @forelse ( $openingHours as $openingHour )
+                                    <tr>
+                                        <td>{{$openingHours->firstItem() + $loop->index}}</td>
+                                        <td>{{$openingHour->from_day}}</td>
+                                        <td>{{$openingHour->to_day ?? "-"}}</td>
+                                        <td>{{Carbon::parse($openingHour->from_time)->format('h:i A')}}</td>
+                                        <td>{{Carbon::parse($openingHour->to_time)->format('h:i A')}}</td>
+                                        <td>
+                                            <a href="{{route('system.openingHours.edit',$openingHour->id)}}" class="btn btn-sm btn-gold">Edit</a>
+                                            <form   action="{{route('system.openingHours.destroy',$openingHour->id)}}"
+                                                    method="POST"
+                                                    onsubmit="return confirmDelete();"
+                                                    style="display: inline;"
+                                            >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+
+                                @endforelse
+                            </tbody>
+                        </table>
+                        {{ $openingHours->links('pagination::bootstrap-4') }}
+
+                        @livewire('new-period')
+
                     </div>
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                            <strong>✅ Success!</strong> {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -88,6 +136,10 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure to delete it?");
+        }
+    </script>
 </body>
 </html>

@@ -1,9 +1,23 @@
 <?php
 
-use App\Http\Controllers\{ClientController,HomeController};
-use App\Http\Controllers\Admin\{ChefController,ItemController, SystemController};
-use Illuminate\Support\Facades\{Route,Auth};
+use App\Http\Controllers\
+{
+    ClientController,
+    HomeController,
+};
 
+use App\Http\Controllers\Admin\
+{
+    ChefController,
+    ItemController,
+    SystemController,
+};
+
+use Illuminate\Support\Facades\
+{
+    Route,
+    Auth,
+};
 
 Auth::routes();
 
@@ -12,6 +26,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::controller(SystemController::class)->group(function(){
     Route::get('/system','index')->name('system.index');
     Route::post('/systemInfos','storeInfo')->name('system.info.store');
+    Route::post('/openingHours','storeOpeningHours')->name('system.openingHours.store');
+    Route::get('/openingHours/{openingHour}/edit','editOpeningHour')->name('system.openingHours.edit');
+    Route::put('/openingHours/{openingHour}','updateOpeningHour')->name('system.openingHours.update');
+    Route::delete('/openinghours/{openingHour}','destroyOpeningHour')->name('system.openingHours.destroy');
 });
 
 Route::resource('chefs',ChefController::class);

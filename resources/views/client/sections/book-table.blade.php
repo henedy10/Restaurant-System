@@ -13,8 +13,12 @@
                                         <i class="bi bi-clock"></i>
                                         <div>
                                             <h5>Opening Hours</h5>
-                                            <p>Monday - Friday: 11:00 AM - 11:00 PM<br>
-                                            Saturday - Sunday: 10:00 AM - 12:00 AM</p>
+                                            <?php use Carbon\Carbon; ?>
+                                            @forelse ($openingHours as $openingHour )
+                                                <p>{{$openingHour->from_day.' - '.$openingHour->to_day.': '.Carbon::parse($openingHour->from_time)->format('h:i A').' - '.Carbon::parse($openingHour->to_time)->format('h:i A')}}</p>
+                                            @empty
+
+                                            @endforelse
                                         </div>
                                     </div>
 

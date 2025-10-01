@@ -8,6 +8,7 @@ use App\Models\{
     client\BookingRoom,
     client\Contact,
     client\Subscriber,
+    OpeningHour,
     RestaurantInfo,
 };
 
@@ -28,11 +29,13 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $Menu        = Menu::where('special',0)->get();
-        $specialMenu = Menu::where('special',1)->get();
-        $chefs       = Chef::with('awards')->get();
-        $info        = RestaurantInfo::latest()->first();
-        return view('client.index',compact('Menu','specialMenu','chefs','info'));
+        $Menu         = Menu::where('special',0)->get();
+        $specialMenu  = Menu::where('special',1)->get();
+        $chefs        = Chef::with('awards')->get();
+        $info         = RestaurantInfo::latest()->first();
+        $openingHours = OpeningHour::get();
+
+        return view('client.index',compact('Menu','specialMenu','chefs','info','openingHours'));
     }
 
     public function storeBookingTable(storeBookingTable $request)
