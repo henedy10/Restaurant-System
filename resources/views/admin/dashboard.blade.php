@@ -2,12 +2,30 @@
 
 @section('content')
 <div>
-    <nav class="navbar navbar-dark bg-black fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top shadow-sm">
         <div class="container-fluid">
-            <button class="btn btn-warning d-md-none" id="toggleBtn">☰</button>
-            <a href="{{route('index')}}" class="navbar-brand text-warning">Nice Restaurant [ {{Auth::user()->name}} ]</a>
+            <!-- زر القائمة (للموبايل) -->
+            <button class="btn btn-warning d-lg-none me-2" id="toggleBtn">☰</button>
+
+            <!-- اسم الموقع -->
+            <span href="#" class="navbar-brand text-warning fw-bold">
+            🍽️ Nice Restaurant
+            </span>
+
+            <div class="ms-auto d-flex align-items-center gap-3">
+            <!-- زر معاينة الموقع -->
+            <a href="{{route('index')}}" class="btn btn-outline-warning btn-sm">
+                👁️  Preview
+            </a>
+
+            <!-- رسالة الترحيب -->
+            <span class="text-light">
+                <strong class="text-warning">{{Auth::user()->name}}</strong>
+            </span>
+            </div>
         </div>
     </nav>
+
     <!-- Sidebar -->
     <div id="sidebar">
         <ul class="nav flex-column px-2">
@@ -22,6 +40,15 @@
             </li>
             <li class="nav-item">
                 <a href="{{route('system.index')}}" class="nav-link">Manage Sys.</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Manage Tables</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('system.index.subscribers')}}" class="nav-link">Subscribers</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link"
@@ -70,7 +97,39 @@
                 <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
                     <div class="card-body">
                         <h5 class="card-title fw-bold" style="color: #FFD700;"> Cheapest Item</h5>
-                        <p class="card-text fs-5">{{ !is_null($expensiveItem) ? $cheapItem->name.' '.'[ '.$cheapItem->price.' $]' : "-"}}</p>
+                        <p class="card-text fs-5">{{ !is_null($cheapItem) ? $cheapItem->name.' '.'[ '.$cheapItem->price.' $]' : "-"}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold" style="color: #FFD700;"> Total Tables</h5>
+                        <p class="card-text fs-5">{{$info->number_of_tables ?? "-"}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold" style="color: #FFD700;"> Available Tables</h5>
+                        <p class="card-text fs-5">-</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold" style="color: #FFD700;"> Booked Tables</h5>
+                        <p class="card-text fs-5">-</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold" style="color: #FFD700;">Subscribers</h5>
+                        <p class="card-text fs-5">{{$subscriberCount}}</p>
                     </div>
                 </div>
             </div>

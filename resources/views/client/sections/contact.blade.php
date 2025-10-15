@@ -4,7 +4,6 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Contact</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
             </div>
             <!-- End Section Title -->
 
@@ -19,7 +18,7 @@
                             </div>
                             <div class="info-content">
                                 <h4>Our Address</h4>
-                                <p>{{$info->address}}</p>
+                                <p>{{$info->address ?? "-"}}</p>
                             </div>
                         </div>
                     </div>
@@ -31,7 +30,7 @@
                             </div>
                             <div class="info-content">
                                 <h4>Email Address</h4>
-                                <p>{{$info->email}}</p>
+                                <p>{{$info->email ?? "-"}}</p>
                             </div>
                         </div>
                     </div>
@@ -42,9 +41,8 @@
                                 <i class="bi bi-headset"></i>
                             </div>
                             <div class="info-content">
-                                <h4>Hours of Operation</h4>
-                                <p>Sunday-Fri: 9 AM - 6 PM</p>
-                                <p>Saturday: 9 AM - 4 PM</p>
+                                <h4>Mobile Phone</h4>
+                                <p>{{$info->phone ?? "-"}}</p>
                             </div>
                         </div>
                     </div>

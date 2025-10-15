@@ -4,7 +4,7 @@ namespace App\Http\Requests\admin\system;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeInfo extends FormRequest
+class storeImage extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,8 @@ class storeInfo extends FormRequest
     {
         return
         [
-            'email'                 => 'required|email:rfc,dns',
-            'phone'                 => 'required|regex:/^\+?[0-9]{11,15}$/',
-            'address'               => 'required|string|min:5|max:255',
+            'section'  => 'string',
+            'path'     => 'required|image|mimes:png,jpg,webp|max:1024',
         ];
     }
 }

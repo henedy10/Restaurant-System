@@ -8,11 +8,6 @@
                             <h2>Savor the Moment, One Bite at a Time</h2>
                             <p>Discover a journey of flavors at our exquisite restaurant. Immerse yourself in a delightful dining experience crafted with passion and precision.</p>
 
-                            <div class="opening-hours" data-aos="fade-up" data-aos-delay="500">
-                                <i class="bi bi-clock"></i>
-                                <span>Open Daily: 11am - 10pm</span>
-                            </div>
-
                             <div class="btn-group">
                                 <a href="#book-a-table" class="btn btn-book">Book a Table</a>
                                 <a href="#menu" class="btn btn-menu">Explore Our Menu</a>

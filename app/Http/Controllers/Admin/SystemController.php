@@ -3,19 +3,33 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\system\storeInfo;
-use App\Http\Requests\admin\system\storeOpeningHour;
-use App\Http\Requests\admin\system\updateOpeningHour;
-use App\Models\OpeningHour;
-use App\Models\RestaurantInfo;
+use App\Http\Requests\admin\system\
+{
+    storeImage,
+    storeInfo,
+    updateOpeningHour,
+};
+use App\Models\client\Subscriber;
+use App\Models\
+{
+    OpeningHour,
+    RestaurantInfo,
+    Image
+};
 
 class SystemController extends Controller
 {
     public function index()
     {
-        $info         = RestaurantInfo::latest()->first();
+        $info         = RestaurantInfo::first();
         $openingHours = OpeningHour::paginate(4);
-        return view('admin/system/manageSys',compact('info','openingHours'));
+        return view('admin.system.manageSys',compact('info','openingHours'));
+    }
+
+    public function indexSubscribers()
+    {
+        $subscribers = Subscriber::paginate(20);
+        return view('admin.system.Subscribers',compact('subscribers'));
     }
 
     public function storeInfo(storeInfo $request)
@@ -23,6 +37,13 @@ class SystemController extends Controller
         $validated = $request->validated();
         RestaurantInfo::updateOrInsert($validated);
         return redirect()->back()->with(['successMsg' => 'Info stored successfully']);
+    }
+
+    public function updateInfo(storeInfo $request , RestaurantInfo $systemInfo)
+    {
+        $validated = $request->validated();
+        $systemInfo->update($validated);
+        return redirect()->back()->with(['successMsg' => 'Info updated successfully']);
     }
 
     public function editOpeningHour(OpeningHour $openingHour)
@@ -41,5 +62,12 @@ class SystemController extends Controller
     {
         $openingHour->delete();
         return redirect()->back()->with(['success' => 'OpeningHour deleted successfully']);
+    }
+
+    public function storeImage(storeImage $request)
+    {
+        $validated = $request->validated();
+        Image::create($validated);
+        return redirect()->back();
     }
 }

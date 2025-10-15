@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\
     ItemController,
     SystemController,
 };
-
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\
 {
     Route,
@@ -25,11 +25,14 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::controller(SystemController::class)->group(function(){
     Route::get('/system','index')->name('system.index');
+    Route::get('/subscribers','indexSubscribers')->name('system.index.subscribers');
     Route::post('/systemInfos','storeInfo')->name('system.info.store');
+    Route::put('/systemInfos/{systemInfo}','updateInfo')->name('system.info.update');
     Route::post('/openingHours','storeOpeningHours')->name('system.openingHours.store');
     Route::get('/openingHours/{openingHour}/edit','editOpeningHour')->name('system.openingHours.edit');
     Route::put('/openingHours/{openingHour}','updateOpeningHour')->name('system.openingHours.update');
-    Route::delete('/openinghours/{openingHour}','destroyOpeningHour')->name('system.openingHours.destroy');
+    Route::delete('/openingHours/{openingHour}','destroyOpeningHour')->name('system.openingHours.destroy');
+    Route::post('/images','storeImage')->name('system.images.store');
 });
 
 Route::resource('chefs',ChefController::class);

@@ -25,7 +25,6 @@
                     <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="300">
                         <div class="about-image-wrapper">
                             <img src="assets/img/restaurant/showcase-4.webp" class="img-fluid main-image shadow" alt="Restaurant Interior">
-                            <img src="assets/img/restaurant/showcase-2.webp" class="img-fluid accent-image shadow" alt="Chef Preparing Food">
                             <span class="establishment-year d-flex align-items-center justify-content-center text-center">Est. 2005</span>
                         </div>
                     </div>

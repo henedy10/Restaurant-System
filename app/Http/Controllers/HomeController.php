@@ -1,7 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\{Chef,Menu};
+use App\Models\
+{
+    Chef,
+    Menu,
+    RestaurantInfo,
+};
+use App\Models\client\Subscriber;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,11 +29,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $chefCount      = Chef::count();
-        $itemCount      = Menu::count();
-        $cheapItem      = Menu::select('name','price')->orderBy('price','asc')->first();
-        $expensiveItem  = Menu::select('name','price')->orderBy('price','desc')->first();
+        $chefCount       = Chef::count();
+        $itemCount       = Menu::count();
+        $subscriberCount = Subscriber::count();
+        $cheapItem       = Menu::select('name','price')->orderBy('price','asc')->first();
+        $expensiveItem   = Menu::select('name','price')->orderBy('price','desc')->first();
+        $info            = RestaurantInfo::first();
 
-        return view('admin.dashboard',compact('chefCount','itemCount','cheapItem','expensiveItem'));
+        return view('admin.dashboard',compact('chefCount','itemCount','cheapItem','expensiveItem','info','subscriberCount'));
     }
 }

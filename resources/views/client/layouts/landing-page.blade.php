@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -14,7 +13,6 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com" rel="preconnect">
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
         <!-- Vendor CSS Files -->
@@ -33,10 +31,10 @@
         <header id="header" class="header d-flex align-items-center sticky-top">
             <div class="container position-relative d-flex align-items-center justify-content-between">
 
-                <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                <div class="logo d-flex align-items-center me-auto me-xl-0">
                     <i class="bi bi-fork-knife"></i>
                     <h1 class="sitename">NiceRestaurant</h1>
-                </a>
+                </div>
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
@@ -45,14 +43,13 @@
                         <li><a href="#menu">Menu</a></li>
                         <li><a href="#book-a-table">Book a Table</a></li>
                         <li><a href="#chefs">Chefs</a></li>
-                        {{-- <li><a href="#events">Events</a></li> --}}
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
 
                 <a class="btn-getstarted d-none d-sm-block" href="#book-a-table">Book a Table</a>
-                <a class="btn btn-outline-danger ml-2" href="{{route('home')}}">Admin</a>
+                <a class="btn btn-outline-{{Auth::user() ? "success" : "danger"}} ml-2" href="{{route('home')}}">{{Auth::user() ? "Registered" : "Login (Admin)"}}</a>
 
             </div>
         </header>
@@ -79,9 +76,9 @@
                     <!-- Contact Us -->
                     <div class="col-lg-2 col-md-6 footer-contact">
                         <h4>Contact Us</h4>
-                        <p><strong>Address: </strong><span>{{$info->address}}</span></p>
-                        <p class="mt-2"><strong>Phone:</strong> <span>{{$info->phone}}</span></p>
-                        <p><strong>Email:</strong> <span>{{$info->email}}</span></p>
+                        <p><strong>Address: </strong><span>{{$info->address ?? "-"}}</span></p>
+                        <p class="mt-2"><strong>Phone:</strong> <span>{{$info->phone ?? "-"}}</span></p>
+                        <p><strong>Email:</strong> <span>{{$info->email ?? "-"}}</span></p>
                     </div>
 
                     <!-- Subscribe -->
@@ -101,7 +98,6 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             @endif
-
                         </form>
                     </div>
                 </div>
