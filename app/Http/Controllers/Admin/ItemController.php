@@ -78,7 +78,7 @@ class ItemController extends Controller
     public function update(updateItem $request, string $id)
     {
         $item      = Menu::findOrFail($id);
-        $imageName = str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
+        $imageName = time().'-'.str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
         $imagePath = $request->file('image')->storeAs('item_images',$imageName,'public');
 
         $item->update([

@@ -43,7 +43,7 @@
 
                     <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
                         <div class="reservation-image">
-                            <img src="assets/img/restaurant/showcase-7.webp" alt="Restaurant interior" class="img-fluid rounded">
+                            <img src="{{asset('storage/'.$bookingImages->path)??''}}" alt="{{$bookingImages->name ?? "Booking Picture"}}" class="img-fluid rounded">
                         </div>
                     </div>
                 </div>

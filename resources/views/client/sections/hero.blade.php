@@ -40,17 +40,14 @@
                             }
                             </script>
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="img-container">
-                                        <img src="assets/img/restaurant/misc-square-1.webp" alt="Restaurant Ambience">
+                                @forelse ($heroImages as $img)
+                                    <div class="swiper-slide">
+                                        <div class="img-container">
+                                            <img src="{{asset("storage/".$img->path)}}" alt="{{$img->name ?? "Picture"}}">
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="swiper-slide">
-                                    <div class="img-container">
-                                        <img src="assets/img/restaurant/misc-square-3.webp" alt="Expert Chefs">
-                                    </div>
-                                </div>
+                                @empty
+                                @endforelse
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>

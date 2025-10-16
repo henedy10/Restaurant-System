@@ -63,7 +63,7 @@ class ChefController extends Controller
      */
     public function update(updateChef $request, Chef $chef)
     {
-        $imageName = str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
+        $imageName = time().'-'.str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
         $imagePath = $request->file('image')->storeAs('chef_images',$imageName,'public');
         $chef->update([
             'name'  => $request->name,

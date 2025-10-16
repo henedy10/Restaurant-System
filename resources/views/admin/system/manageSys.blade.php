@@ -144,29 +144,17 @@
 
                             @csrf
                             <div>
-                                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
-                                    <h5 class="accent text-warning mb-3 fw-bold">Images</h5>
-                                    <div class="position-relative d-flex align-items-center gap-2">
-                                        <small class="text-danger d-none" id="hint_img">
-                                            * You can upload more than one image for Hero Section
-                                        </small>
-                                        <span
-                                            class="text-danger border border-danger rounded-circle d-inline-flex justify-content-center align-items-center"
-                                            id="icon_img"
-                                            style="width: 28px; height: 28px; font-weight: bold; cursor: pointer; background-color: #fff0f0;">
-                                            !
-                                        </span>
-                                    </div>
-                                </div>
+                                <h5 class="accent text-warning mb-3 fw-bold">Images</h5>
+                                <hr class="border-bottom border-light mb-4">
 
                                 <div class="d-flex flex-column gap-3">
                                     <div class="p-3 rounded-3" style="background-color:#2b2b2b;">
                                         <div class="row g-3 align-items-center">
                                             <div class="col-md-4">
-                                                <label for="path" class="mb-1">Image</label>
-                                                <input type="file" name="path" id="path"
+                                                <label for="image" class="mb-1">Image</label>
+                                                <input type="file" name="image" id="image"
                                                     class="form-control form-control-sm bg-dark text-white border-secondary">
-                                                @error('path')
+                                                @error('image')
                                                     {{$message}}
                                                 @enderror
                                             </div>
@@ -216,23 +204,16 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-
         let Hint = document.getElementById('hint')
         let Icon = document.getElementById('icon')
-        let Hint_Img = document.getElementById('hint_img')
-        let Icon_Img = document.getElementById('icon_img')
 
         Icon.addEventListener("click",function (){
             Hint.classList.toggle('d-none')
-        });
-        Icon_Img.addEventListener("click",function (){
-            Hint_Img.classList.toggle('d-none')
         });
 
         function confirmDelete() {
             return confirm("Are you sure to delete it?");
         }
-
     </script>
 </body>
 </html>

@@ -23,8 +23,8 @@ class storeImage extends FormRequest
     {
         return
         [
-            'section'  => 'string',
-            'path'     => 'required|image|mimes:png,jpg,webp|max:1024',
+            'section' => 'string',
+            'image'   => 'required|image|mimes:png,jpg,webp|max:1024',
         ];
     }
 }

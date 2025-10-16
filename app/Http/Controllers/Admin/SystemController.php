@@ -66,8 +66,13 @@ class SystemController extends Controller
 
     public function storeImage(storeImage $request)
     {
-        $validated = $request->validated();
-        Image::create($validated);
+        $imageName = time().'-'.str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
+        $imagePath = $request->file('image')->storeAs('sys_images',$imageName,'public');
+        Image::create([
+            'name'    => $request->name ,
+            'path'    => $imagePath ,
+            'section' => $request->section ,
+        ]);
         return redirect()->back();
     }
 }
