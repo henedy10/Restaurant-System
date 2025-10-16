@@ -84,44 +84,11 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col">
-                <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold" style="color: #FFD700;">Expensive Item</h5>
-                        <p class="card-text fs-5"> {{ !is_null($expensiveItem) ? $expensiveItem->name.' '.'[ '.$expensiveItem->price.' $]' : "-"}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold" style="color: #FFD700;"> Cheapest Item</h5>
-                        <p class="card-text fs-5">{{ !is_null($cheapItem) ? $cheapItem->name.' '.'[ '.$cheapItem->price.' $]' : "-"}}</p>
-                    </div>
-                </div>
-            </div>
             <div class="col">
                 <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
                     <div class="card-body">
                         <h5 class="card-title fw-bold" style="color: #FFD700;"> Total Tables</h5>
                         <p class="card-text fs-5">{{$info->number_of_tables ?? "-"}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold" style="color: #FFD700;"> Available Tables</h5>
-                        <p class="card-text fs-5">-</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold" style="color: #FFD700;"> Booked Tables</h5>
-                        <p class="card-text fs-5">-</p>
                     </div>
                 </div>
             </div>
