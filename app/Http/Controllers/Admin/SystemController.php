@@ -7,6 +7,7 @@ use App\Http\Requests\admin\system\
 {
     storeImage,
     storeInfo,
+    storeInfoTables,
     updateOpeningHour,
 };
 use App\Models\client\Subscriber;
@@ -16,6 +17,7 @@ use App\Models\
     RestaurantInfo,
     Image
 };
+use App\Models\client\BookingRoom;
 
 class SystemController extends Controller
 {
@@ -35,7 +37,12 @@ class SystemController extends Controller
     public function storeInfo(storeInfo $request)
     {
         $validated = $request->validated();
-        RestaurantInfo::updateOrInsert($validated);
+        RestaurantInfo::create([
+            'email'             => $validated['email'],
+            'address'           => $validated['address'],
+            'phone'             => $validated['phone'],
+            'number_of_tables'  => 0,
+        ]);
         return redirect()->back()->with(['successMsg' => 'Info stored successfully']);
     }
 
@@ -74,5 +81,23 @@ class SystemController extends Controller
             'section' => $request->section ,
         ]);
         return redirect()->back();
+    }
+
+    public function indexTables()
+    {
+        $countTables        = RestaurantInfo::value('number_of_tables');
+        $countBookingTables = BookingRoom::count();
+        return view('admin.system.Tables',compact('countTables','countBookingTables'));
+    }
+
+    public function storeInfoTables(storeInfoTables $request){
+        $validated = $request->validated();
+        $info      = RestaurantInfo::select('id','number_of_tables','availability_booking')->first();
+
+        $info->update([
+            'number_of_tables'      => $validated['number_of_tables'],
+            'availability_booking'  => $validated['booking_availability'] ?? 0,
+        ]);
+        return redirect()->back()->with(['successMsg' => 'data updated successfully']);
     }
 }

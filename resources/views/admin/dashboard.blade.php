@@ -42,7 +42,7 @@
                 <a href="{{route('system.index')}}" class="nav-link">Manage Sys.</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Manage Tables</a>
+                <a href="{{route('system.tables.index')}}" class="nav-link">Manage Tables</a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">Contacts</a>
@@ -71,7 +71,7 @@
             <div class="col">
                 <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
                     <div class="card-body">
-                        <h5 class="card-title">Total Chefs</h5>
+                        <h5 class="card-title fw-bold">Total Chefs</h5>
                         <p class="card-text fs-5">{{$chefCount}}</p>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
             <div class="col">
                 <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
                     <div class="card-body">
-                        <h5 class="card-title">Total Items</h5>
+                        <h5 class="card-title fw-bold">Total Items</h5>
                         <p class="card-text fs-5">{{$itemCount}}</p>
                     </div>
                 </div>

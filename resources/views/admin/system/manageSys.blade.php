@@ -137,57 +137,70 @@
                         @livewire('new-period')
 
                         <hr class="border-secondary">
+                        <div>
+                            <form action="{{route('system.images.store')}}" method="POST" enctype="multipart/form-data"
+                                class="p-4 rounded-4 shadow-lg"
+                                style="background-color:#1e1e1e; max-width:100%; margin:auto; color:white;">
+                                @csrf
 
-                        <form action="{{route('system.images.store')}}" method="POST" enctype="multipart/form-data"
-                            class="p-4 rounded-4 shadow-lg"
-                            style="background-color:#1e1e1e; max-width:650px; margin:auto; color:white;">
-
-                            @csrf
-                            <div>
-                                <h5 class="accent text-warning mb-3 fw-bold">Images</h5>
-                                <hr class="border-bottom border-light mb-4">
-
-                                <div class="d-flex flex-column gap-3">
-                                    <div class="p-3 rounded-3" style="background-color:#2b2b2b;">
-                                        <div class="row g-3 align-items-center">
-                                            <div class="col-md-4">
-                                                <label for="image" class="mb-1">Image</label>
-                                                <input type="file" name="image" id="image"
-                                                    class="form-control form-control-sm bg-dark text-white border-secondary">
-                                                @error('image')
-                                                    {{$message}}
-                                                @enderror
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="name" class="mb-1">Name</label>
-                                                <input type="text" id="name" name="name" placeholder="Enter image's name"
-                                                    class="form-control form-control-sm bg-dark text-white border-secondary">
-                                                @error('name')
-                                                    {{$message}}
-                                                @enderror
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="section" class="mb-1">Section</label>
-                                                <select name="section" id="section" class="form-control form-control-sm bg-dark text-white border-secondary">
-                                                    <option value="">        Select Section</option>
-                                                    <option value="Hero">    Hero Section</option>
-                                                    <option value="About">   About Section</option>
-                                                    <option value="Booking"> Booking Section</option>
-                                                </select>
-                                                @error('section')
-                                                    {{$message}}
-                                                @enderror
-                                            </div>
-                                            <!-- Submit Button -->
-                                            <div class="text-end mt-4">
-                                                <button type="submit" class="btn btn-warning fw-bold px-4">Save</button>
-                                            </div>
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                                        <h5 class="accent text-warning mb-3 fw-bold">Images</h5>
+                                        <div class="position-relative d-flex align-items-center gap-2 flex-column">
+                                            <span
+                                                class="text-danger border border-danger rounded-circle d-inline-flex justify-content-center align-items-center"
+                                                id="image_icon"
+                                                style="width: 28px; height: 28px; font-weight: bold; cursor: pointer; background-color: #fff0f0;">
+                                                !
+                                            </span>
+                                            <pre class="text-danger d-none" id="image_hint">
+                                                * You can add more than image for Hero Section.
+                                                * You can add only one image for About Section and Booking Section.
+                                            </pre>
                                         </div>
                                     </div>
 
+                                    <div class="d-flex flex-column gap-3">
+                                        <div class="p-3 rounded-3" style="background-color:#2b2b2b;">
+                                            <div class="row g-3 align-items-center">
+                                                <div class="col-md-4">
+                                                    <label for="image" class="mb-1">Image</label>
+                                                    <input type="file" name="image" id="image"
+                                                        class="form-control form-control-sm bg-dark text-white border-secondary">
+                                                    @error('image')
+                                                        {{$message}}
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="name" class="mb-1">Name</label>
+                                                    <input type="text" id="name" name="name" placeholder="Enter image's name"
+                                                        class="form-control form-control-sm bg-dark text-white border-secondary">
+                                                    @error('name')
+                                                        {{$message}}
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="section" class="mb-1">Section</label>
+                                                    <select name="section" id="section" class="form-control form-control-sm bg-dark text-white border-secondary">
+                                                        <option value="">        Select Section</option>
+                                                        <option value="Hero">    Hero Section</option>
+                                                        <option value="About">   About Section</option>
+                                                        <option value="Booking"> Booking Section</option>
+                                                    </select>
+                                                    @error('section')
+                                                        {{$message}}
+                                                    @enderror
+                                                </div>
+                                                <!-- Submit Button -->
+                                                <div class="text-end mt-4">
+                                                    <button type="submit" class="btn btn-warning fw-bold px-4">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
 
                     @if (session('success'))
@@ -206,9 +219,15 @@
     <script>
         let Hint = document.getElementById('hint')
         let Icon = document.getElementById('icon')
+        let Image_Hint = document.getElementById('image_hint')
+        let Image_Icon = document.getElementById('image_icon')
 
         Icon.addEventListener("click",function (){
             Hint.classList.toggle('d-none')
+        });
+
+        Image_Icon.addEventListener("click",function (){
+            Image_Hint.classList.toggle('d-none')
         });
 
         function confirmDelete() {

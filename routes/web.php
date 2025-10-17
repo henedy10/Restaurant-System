@@ -33,6 +33,8 @@ Route::controller(SystemController::class)->group(function(){
     Route::put('/openingHours/{openingHour}','updateOpeningHour')->name('system.openingHours.update');
     Route::delete('/openingHours/{openingHour}','destroyOpeningHour')->name('system.openingHours.destroy');
     Route::post('/images','storeImage')->name('system.images.store');
+    Route::get('/Tables','indexTables')->name('system.tables.index');
+    Route::put('/Tables','storeInfoTables')->name('system.tables.store');
 });
 
 Route::resource('chefs',ChefController::class);
