@@ -4,7 +4,13 @@
                 <div class="row g-0 align-items-center">
                     <div class="col-lg-6 content-col">
                         <div class="content-wrapper">
-                            <div class="status-badge">Reservations Open</div>
+                            <div class="status-badge">
+                                @if ($info->availability_booking)
+                                    Reservations Open
+                                @else
+                                    Reservations Close
+                                @endif
+                            </div>
                             <h2>Savor the Moment, One Bite at a Time</h2>
                             <p>Discover a journey of flavors at our exquisite restaurant. Immerse yourself in a delightful dining experience crafted with passion and precision.</p>
 

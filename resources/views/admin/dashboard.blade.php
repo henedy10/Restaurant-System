@@ -45,10 +45,7 @@
                 <a href="{{route('system.tables.index')}}" class="nav-link">Manage Tables</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Contacts</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{route('system.index.subscribers')}}" class="nav-link">Subscribers</a>
+                <a href="{{route('system.contacts.index')}}" class="nav-link">Contacts</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link"

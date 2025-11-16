@@ -21,25 +21,29 @@ use Illuminate\Support\Facades\
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::middleware('CheckAdmin')->group(function(){
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::controller(SystemController::class)->group(function(){
-    Route::get('/system','index')->name('system.index');
-    Route::get('/subscribers','indexSubscribers')->name('system.index.subscribers');
-    Route::post('/systemInfos','storeInfo')->name('system.info.store');
-    Route::put('/systemInfos/{systemInfo}','updateInfo')->name('system.info.update');
-    Route::post('/openingHours','storeOpeningHours')->name('system.openingHours.store');
-    Route::get('/openingHours/{openingHour}/edit','editOpeningHour')->name('system.openingHours.edit');
-    Route::put('/openingHours/{openingHour}','updateOpeningHour')->name('system.openingHours.update');
-    Route::delete('/openingHours/{openingHour}','destroyOpeningHour')->name('system.openingHours.destroy');
-    Route::post('/images','storeImage')->name('system.images.store');
-    Route::get('/Tables','indexTables')->name('system.tables.index');
-    Route::put('/Tables','storeInfoTables')->name('system.tables.store');
+    Route::controller(SystemController::class)->group(function(){
+        Route::get('/system','index')->name('system.index');
+        Route::get('/subscribers','indexSubscribers')->name('system.index.subscribers');
+        Route::post('/systemInfos','storeInfo')->name('system.info.store');
+        Route::put('/systemInfos/{systemInfo}','updateInfo')->name('system.info.update');
+        Route::post('/openingHours','storeOpeningHours')->name('system.openingHours.store');
+        Route::get('/openingHours/{openingHour}/edit','editOpeningHour')->name('system.openingHours.edit');
+        Route::put('/openingHours/{openingHour}','updateOpeningHour')->name('system.openingHours.update');
+        Route::delete('/openingHours/{openingHour}','destroyOpeningHour')->name('system.openingHours.destroy');
+        Route::post('/images','storeImage')->name('system.images.store');
+        Route::get('/Tables','indexTables')->name('system.tables.index');
+        Route::put('/Tables','storeInfoTables')->name('system.tables.store');
+        Route::get('/Contacts','indexContacts')->name('system.contacts.index');
+    });
+
+    Route::resource('chefs',ChefController::class);
+
+    Route::resource('items',ItemController::class);
+
 });
-
-Route::resource('chefs',ChefController::class);
-
-Route::resource('items',ItemController::class);
 Route::get('/new-item',[ItemController::class,'newItem'])->name('newItem');
 
 Route::controller(ClientController::class)->group(function(){

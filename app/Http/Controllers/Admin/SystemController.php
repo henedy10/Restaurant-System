@@ -18,6 +18,7 @@ use App\Models\
     Image
 };
 use App\Models\client\BookingRoom;
+use App\Models\client\Contact;
 
 class SystemController extends Controller
 {
@@ -26,12 +27,6 @@ class SystemController extends Controller
         $info         = RestaurantInfo::first();
         $openingHours = OpeningHour::paginate(4);
         return view('admin.system.manageSys',compact('info','openingHours'));
-    }
-
-    public function indexSubscribers()
-    {
-        $subscribers = Subscriber::paginate(20);
-        return view('admin.system.Subscribers',compact('subscribers'));
     }
 
     public function storeInfo(storeInfo $request)
@@ -87,7 +82,7 @@ class SystemController extends Controller
     {
         $countTables        = RestaurantInfo::value('number_of_tables');
         $countBookingTables = BookingRoom::count();
-        return view('admin.system.Tables',compact('countTables','countBookingTables'));
+        return view('admin.tables.index',compact('countTables','countBookingTables'));
     }
 
     public function storeInfoTables(storeInfoTables $request){
@@ -100,4 +95,10 @@ class SystemController extends Controller
         ]);
         return redirect()->back()->with(['successMsg' => 'data updated successfully']);
     }
+
+    public function indexContacts()
+    {
+        return view('admin.contacts.index');
+    }
+
 }

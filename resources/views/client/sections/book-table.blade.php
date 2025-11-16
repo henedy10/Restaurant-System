@@ -1,3 +1,4 @@
+        <?php use Carbon\Carbon; ?>
         <!-- Book A Table Section -->
         <section id="book-a-table" class="book-a-table section">
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -12,7 +13,6 @@
                                         <i class="bi bi-clock"></i>
                                         <div>
                                             <h5>Opening Hours</h5>
-                                            <?php use Carbon\Carbon; ?>
                                             @forelse ($openingHours as $openingHour )
                                                 <p>{{$openingHour->from_day.' - '.$openingHour->to_day.': '.Carbon::parse($openingHour->from_time)->format('h:i A').' - '.Carbon::parse($openingHour->to_time)->format('h:i A')}}</p>
                                             @empty
