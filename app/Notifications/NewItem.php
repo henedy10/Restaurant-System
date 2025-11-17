@@ -17,7 +17,7 @@ class NewItem extends Notification
      */
     public function __construct($subscriberEmail)
     {
-        $this->subscriberEmail=$subscriberEmail;
+        $this->subscriberEmail = $subscriberEmail;
     }
 
     /**

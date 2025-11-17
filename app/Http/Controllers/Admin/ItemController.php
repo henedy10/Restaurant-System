@@ -1,22 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\item\{storeItem,updateItem};
-use App\Models\client\Subscriber;
-use App\Models\Menu;
-use App\Notifications\NewItem;
-
+use App\Http\Requests\admin\item\
+{
+    storeItem,
+    updateItem
+};
+use App\Services\Admin\ItemService;
 
 class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(ItemService $item)
     {
-        $items = Menu::paginate(8);
+        $items = $item->index();
         return view('admin.items.index',compact('items'));
     }
 
@@ -31,82 +31,54 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(storeItem $request)
+    public function store(storeItem $request , ItemService $item)
     {
-        $imageName = str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
-        $imagePath = $request->file('image')->storeAs('item_images',$imageName,'public');
-
-        Menu::create([
-            'name'         => $request->name,
-            'type'         => $request->type,
-            'description'  => $request->description,
-            'price'        => $request->price,
-            'image'        => $imagePath,
-        ]);
-
-        // send notification to subscribe when creation new item
-        Subscriber::chunkById(20, function (Collection $subscribersEmails){
-            foreach($subscribersEmails as $subscribersEmail){
-                $subscribersEmail->notify(new NewItem($subscribersEmail->email));
-            }
-        });
-
-        return redirect()->back()->with('successAddItem','Item is added successfully');
+        $storeItem = $item->store($request);
+        return $storeItem ? redirect()->back()->with('successAddItem','Item is added successfully') : "There is an error";
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id , ItemService $item)
     {
-        $item = Menu::findOrFail($id);
+        $item = $item->show($id);
         return view('admin.items.show',compact('item'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id , ItemService $item)
     {
-        $item = Menu::findOrFail($id);
+        $item = $item->edit($id);
         return view('admin.items.edit',compact('item'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(updateItem $request, string $id)
+    public function update(updateItem $request, string $id , ItemService $item)
     {
-        $item      = Menu::findOrFail($id);
-        $imageName = time().'-'.str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
-        $imagePath = $request->file('image')->storeAs('item_images',$imageName,'public');
-
-        $item->update([
-            'name'         => $request->name,
-            'type'         => $request->type,
-            'price'        => $request->price,
-            'description'  => $request->description,
-            'image'        => $imagePath,
-        ]);
-
-        return redirect()->back()->with('successEditItem','Item is updated successfully');
+        $itemUpdate = $item->update($id,$request);
+        return $itemUpdate ? redirect()->back()->with('successEditItem','Item is updated successfully') : "There is an error";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id , ItemService $item)
     {
-        Menu::findOrFail($id)->delete();
-        return redirect()->back()->with('successDeleteItem','Item is deleted successfully');
+        $itemDestroy = $item->destroy($id);
+        return $itemDestroy ? redirect()->back()->with('successDeleteItem','Item is deleted successfully') : "There is an error";
     }
 
     /**
      * Display the specified new item.
      */
-    public function newItem()
+    public function newItem(ItemService $item)
     {
-        $item = Menu::latest()->first();
+        $item = $item->newItem();
         return view('admin.items.newItem',compact('item'));
     }
 }
