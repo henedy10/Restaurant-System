@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Chef;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\chef\{storeChef,updateChef};
+use App\Services\Admin\ChefService;
 
 class ChefController extends Controller
 {
@@ -26,20 +27,10 @@ class ChefController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(storeChef $request)
+    public function store(storeChef $request , ChefService $chefService)
     {
-
-        $imageName = str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
-        $imagePath = $request->file('image')->storeAs('chef_images',$imageName,'public');
-
-        Chef::create([
-            'name'  => $request->name,
-            'role'  => $request->role,
-            'info'  => $request->info,
-            'image' => $imagePath,
-        ]);
-
-        return redirect()->back()->with('successAddChef','Chef is added successfully');
+        $chefCreate = $chefService->store($request);
+        return  $chefCreate ? redirect()->back()->with('successAddChef','Chef is added successfully') : "There is an error";
     }
 
     /**
@@ -61,26 +52,18 @@ class ChefController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(updateChef $request, Chef $chef)
+    public function update(updateChef $request, Chef $chef , ChefService $chefService)
     {
-        $imageName = time().'-'.str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
-        $imagePath = $request->file('image')->storeAs('chef_images',$imageName,'public');
-        $chef->update([
-            'name'  => $request->name,
-            'role'  => $request->role,
-            'info'  => $request->info,
-            'image' => $imagePath,
-        ]);
-
-        return redirect()->back()->with('successEditChef','Chef is updated successfully');
+        $chefUpdate = $chefService->update($request,$chef);
+        return $chefUpdate ? redirect()->back()->with('successEditChef','Chef is updated successfully') : "There is an error";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Chef $chef)
+    public function destroy(Chef $chef , ChefService $chefService)
     {
-        $chef->delete();
-        return redirect()->back()->with('successDeleteChef','Chef is deleted successfully');
+        $chefDelete = $chefService->destroy($chef);
+        return $chefDelete ? redirect()->back()->with('successDeleteChef','Chef is deleted successfully') : "There is an error";
     }
 }
