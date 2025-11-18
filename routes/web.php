@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\
     ChefController,
     ItemController,
     SystemController,
+    TableController,
 };
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\
@@ -34,9 +35,12 @@ Route::middleware('CheckAdmin')->group(function(){
         Route::put('/openingHours/{openingHour}','updateOpeningHour')->name('system.openingHours.update');
         Route::delete('/openingHours/{openingHour}','destroyOpeningHour')->name('system.openingHours.destroy');
         Route::post('/images','storeImage')->name('system.images.store');
-        Route::get('/Tables','indexTables')->name('system.tables.index');
-        Route::put('/Tables','storeInfoTables')->name('system.tables.store');
         Route::get('/Contacts','indexContacts')->name('system.contacts.index');
+    });
+
+    Route::controller(TableController::class)->group(function (){
+        Route::get('/Tables','index')->name('system.tables.index');
+        Route::put('/Tables','store')->name('system.tables.store');
     });
 
     Route::resource('chefs',ChefController::class);

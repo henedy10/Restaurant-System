@@ -7,18 +7,15 @@ use App\Http\Requests\admin\system\
 {
     storeImage,
     storeInfo,
-    storeInfoTables,
     updateOpeningHour,
 };
-use App\Models\client\Subscriber;
+
 use App\Models\
 {
     OpeningHour,
     RestaurantInfo,
     Image
 };
-use App\Models\client\BookingRoom;
-use App\Models\client\Contact;
 
 class SystemController extends Controller
 {
@@ -76,24 +73,6 @@ class SystemController extends Controller
             'section' => $request->section ,
         ]);
         return redirect()->back();
-    }
-
-    public function indexTables()
-    {
-        $countTables        = RestaurantInfo::value('number_of_tables');
-        $countBookingTables = BookingRoom::count();
-        return view('admin.tables.index',compact('countTables','countBookingTables'));
-    }
-
-    public function storeInfoTables(storeInfoTables $request){
-        $validated = $request->validated();
-        $info      = RestaurantInfo::select('id','number_of_tables','availability_booking')->first();
-
-        $info->update([
-            'number_of_tables'      => $validated['number_of_tables'],
-            'availability_booking'  => $validated['booking_availability'] ?? 0,
-        ]);
-        return redirect()->back()->with(['successMsg' => 'data updated successfully']);
     }
 
     public function indexContacts()
