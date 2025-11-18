@@ -74,10 +74,4 @@ class SystemController extends Controller
         ]);
         return redirect()->back();
     }
-
-    public function indexContacts()
-    {
-        return view('admin.contacts.index');
-    }
-
 }

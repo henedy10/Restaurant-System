@@ -9,6 +9,7 @@ use App\Http\Controllers\
 use App\Http\Controllers\Admin\
 {
     ChefController,
+    ContactController,
     ItemController,
     SystemController,
     TableController,
@@ -35,7 +36,6 @@ Route::middleware('CheckAdmin')->group(function(){
         Route::put('/openingHours/{openingHour}','updateOpeningHour')->name('system.openingHours.update');
         Route::delete('/openingHours/{openingHour}','destroyOpeningHour')->name('system.openingHours.destroy');
         Route::post('/images','storeImage')->name('system.images.store');
-        Route::get('/Contacts','indexContacts')->name('system.contacts.index');
     });
 
     Route::controller(TableController::class)->group(function (){
@@ -46,6 +46,10 @@ Route::middleware('CheckAdmin')->group(function(){
     Route::resource('chefs',ChefController::class);
 
     Route::resource('items',ItemController::class);
+
+    Route::controller(ContactController::class)->group(function (){
+        Route::get('/Contacts','index')->name('system.contacts.index');
+    });
 
 });
 Route::get('/new-item',[ItemController::class,'newItem'])->name('newItem');
