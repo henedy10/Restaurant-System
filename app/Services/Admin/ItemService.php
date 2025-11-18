@@ -1,20 +1,22 @@
 <?php
-
 namespace App\Services\Admin;
 
 use Illuminate\Support\Facades\Storage;
-use App\Models\
-{
-    Item
-    ,Menu
-};
-
+use App\Models\Menu;
 use App\Models\client\Subscriber;
 use App\Notifications\NewItem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Notification;
 
 class ItemService{
+
+    public function uploadImage($name , $image)
+    {
+        $imageName = str_replace(' ','_',$name) . '.' . $image->getClientOriginalExtension();
+        $imagePath = $image->storeAs('item_images',$imageName,'public');
+
+        return $imagePath;
+    }
 
     public function index()
     {
@@ -30,9 +32,7 @@ class ItemService{
 
     public function store($request)
     {
-        $imageName = str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
-        $imagePath = $request->file('image')->storeAs('item_images',$imageName,'public');
-
+        $imagePath  = $this->uploadImage($request->name,$request->image);
         $itemCreate = Menu::create([
             'name'         => $request->name,
             'type'         => $request->type,
@@ -58,16 +58,23 @@ class ItemService{
     public function update($id,$request)
     {
         $item      = Menu::findOrFail($id);
-        $imageName = time().'-'.str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
-        $imagePath = $request->file('image')->storeAs('item_images',$imageName,'public');
-
-        $itemUpdate = $item->update([
+        $data = [
             'name'         => $request->name,
             'type'         => $request->type,
             'price'        => $request->price,
             'description'  => $request->description,
-            'image'        => $imagePath,
-        ]);
+        ];
+
+        if($request->hasFile('image')){
+            if($item->image && Storage::disk('public')->exists($item->image)){
+
+                Storage::disk('public')->delete($item->image);
+                $imagePath     = $this->uploadImage($request->name , $request->image);
+                $data['image'] = $imagePath;
+
+            }
+        }
+        $itemUpdate = $item->update($data);
 
         return $itemUpdate;
     }

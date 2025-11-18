@@ -10,7 +10,9 @@ class ChefService {
     public function uploadImage($name , $image)
     {
         $imageName = str_replace(' ','_',$name) . '.' . $image->getClientOriginalExtension();
-        return $image->storeAs('chef_images',$imageName,'public');
+        $imagePath = $image->storeAs('chef_images',$imageName,'public');
+
+        return $imagePath;
     }
 
     public function store($request)
