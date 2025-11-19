@@ -4,7 +4,7 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
             <h2>Location</h2>
-            <p>{{$info->address ?? "-"}}</p>
+            <p>{{$data['info']->address ?? "-"}}</p>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="info-content">
                         <h3>Our Location</h3>
-                        <p>{{$info->address ?? "-"}}</p>
+                        <p>{{$data['info']->address ?? "-"}}</p>
                     </div>
                     </div>
 
@@ -39,7 +39,7 @@
                     </div>
                     <div class="info-content">
                         <h3>Reservations</h3>
-                        <p>{{$info->phone ?? "-"}}</p>
+                        <p>{{$data['info']->phone ?? "-"}}</p>
                         <p class="small-text">We recommend making reservations at least 48 hours in advance</p>
                     </div>
                     </div>
@@ -51,7 +51,7 @@
                     <div class="info-content">
                         <h3>Opening Hours</h3>
                         <?php use Carbon\Carbon; ?>
-                        @forelse ($openingHours as $openingHour )
+                        @forelse ($data['openingHours'] as $openingHour )
                             <p>{{$openingHour->from_day.' - '.$openingHour->to_day.': '.Carbon::parse($openingHour->from_time)->format('h:i A').' - '.Carbon::parse($openingHour->to_time)->format('h:i A')}}</p>
                         @empty
                             -

@@ -24,7 +24,7 @@
 
                     <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="300">
                         <div class="about-image-wrapper">
-                            <img src="{{asset('storage/'.$aboutImages->path)??""}}" class="img-fluid main-image shadow" alt="{{$aboutImages->name ?? "About Picture"}}">
+                            <img src="{{asset('storage/'.$data['aboutImages']->path)??""}}" class="img-fluid main-image shadow" alt="{{$data['aboutImages']->name ?? "About Picture"}}">
                             <span class="establishment-year d-flex align-items-center justify-content-center text-center">Est. 2005</span>
                         </div>
                     </div>

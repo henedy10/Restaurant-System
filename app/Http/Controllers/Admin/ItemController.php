@@ -11,12 +11,18 @@ use App\Services\Admin\ItemService;
 
 class ItemController extends Controller
 {
+    protected ItemService $item;
+
+    public function __construct(ItemService $item)
+    {
+        $this->item = $item;
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index(ItemService $item)
+    public function index()
     {
-        $items = $item->index();
+        $items = $this->item->index();
         return view('admin.items.index',compact('items'));
     }
 
@@ -31,54 +37,54 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(storeItem $request , ItemService $item)
+    public function store(storeItem $request)
     {
-        $storeItem = $item->store($request);
-        return $storeItem ? redirect()->back()->with('successAddItem','Item is added successfully') : "There is an error";
+        $this->item->store($request->validated());
+        return redirect()->back()->with('successAddItem','Item is added successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id , ItemService $item)
+    public function show(string $id)
     {
-        $item = $item->show($id);
+        $item = $this->item->show($id);
         return view('admin.items.show',compact('item'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id , ItemService $item)
+    public function edit(string $id)
     {
-        $item = $item->edit($id);
+        $item = $this->item->edit($id);
         return view('admin.items.edit',compact('item'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(updateItem $request, string $id , ItemService $item)
+    public function update(updateItem $request, string $id)
     {
-        $itemUpdate = $item->update($id,$request);
-        return $itemUpdate ? redirect()->back()->with('successEditItem','Item is updated successfully') : "There is an error";
+        $this->item->update($id,$request->validated());
+        return redirect()->back()->with('successEditItem','Item is updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id , ItemService $item)
+    public function destroy(string $id)
     {
-        $itemDestroy = $item->destroy($id);
-        return $itemDestroy ? redirect()->back()->with('successDeleteItem','Item is deleted successfully') : "There is an error";
+        $this->item->destroy($id);
+        return redirect()->back()->with('successDeleteItem','Item is deleted successfully');
     }
 
     /**
      * Display the specified new item.
      */
-    public function newItem(ItemService $item)
+    public function newItem()
     {
-        $item = $item->newItem();
+        $item = $this->item->newItem();
         return view('admin.items.newItem',compact('item'));
     }
 }

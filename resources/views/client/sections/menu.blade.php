@@ -8,7 +8,7 @@
             <!-- End Section Title -->
 
             <div class="container" data-aos="fade-up">
-                @if ($Menu->count() > 0)
+                @if ($data['menu']->count() > 0)
                     <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
                         <div class="menu-filters isotope-filters mb-5">
                             <ul>
@@ -21,7 +21,7 @@
 
                         <div class="menu-container isotope-container row gy-4">
                             <!-- Regular Menu Items -->
-                            @foreach ( $Menu as $Category )
+                            @foreach ( $data['menu'] as $Category )
                                 @php
                                     $filterClass = match($Category->type){
                                         'Dessert'  => 'filter-dessert' ,
@@ -65,7 +65,7 @@
                             <span><i class="bi bi-award"></i> Chef's Specials</span>
                         </div>
                         <div class="specials-container">
-                            @forelse ($specialMenu as $specialCategory)
+                            @forelse ($data['specialMenu'] as $specialCategory)
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="menu-item special-item">

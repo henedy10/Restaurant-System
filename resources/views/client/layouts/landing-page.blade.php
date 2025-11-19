@@ -76,9 +76,9 @@
                     <!-- Contact Us -->
                     <div class="col-lg-2 col-md-6 footer-contact">
                         <h4>Contact Us</h4>
-                        <p><strong>Address: </strong><span>{{$info->address ?? "-"}}</span></p>
-                        <p class="mt-2"><strong>Phone:</strong> <span>{{$info->phone ?? "-"}}</span></p>
-                        <p><strong>Email:</strong> <span>{{$info->email ?? "-"}}</span></p>
+                        <p><strong>Address: </strong><span>{{$data['info']->address ?? "-"}}</span></p>
+                        <p class="mt-2"><strong>Phone:</strong> <span>{{$data['info']->phone ?? "-"}}</span></p>
+                        <p><strong>Email:</strong> <span>{{$data['info']->email ?? "-"}}</span></p>
                     </div>
 
                     <!-- Subscribe -->

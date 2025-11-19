@@ -5,7 +5,7 @@
                     <div class="col-lg-6 content-col">
                         <div class="content-wrapper">
                             <div class="status-badge">
-                                @if ($info->availability_booking)
+                                @if ($data['info']->availability_booking)
                                     Reservations Open
                                 @else
                                     Reservations Close
@@ -46,7 +46,7 @@
                             }
                             </script>
                             <div class="swiper-wrapper">
-                                @forelse ($heroImages as $img)
+                                @forelse ($data['heroImages'] as $img)
                                     <div class="swiper-slide">
                                         <div class="img-container">
                                             <img src="{{asset("storage/".$img->path)}}" alt="{{$img->name ?? "Picture"}}">

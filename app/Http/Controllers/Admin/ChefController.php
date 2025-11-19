@@ -8,6 +8,12 @@ use App\Services\Admin\ChefService;
 
 class ChefController extends Controller
 {
+    protected ChefService $chef;
+
+    public function __construct(ChefService $chef)
+    {
+        $this->chef = $chef;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -27,10 +33,10 @@ class ChefController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(storeChef $request , ChefService $chefService)
+    public function store(storeChef $request)
     {
-        $chefCreate = $chefService->store($request);
-        return  $chefCreate ? redirect()->back()->with('successAddChef','Chef is added successfully') : "There is an error";
+        $this->chef->store($request->validated());
+        return  redirect()->back()->with('successAddChef','Chef is added successfully');
     }
 
     /**
@@ -52,18 +58,18 @@ class ChefController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(updateChef $request, Chef $chef , ChefService $chefService)
+    public function update(updateChef $request, Chef $chef)
     {
-        $chefUpdate = $chefService->update($request,$chef);
-        return $chefUpdate ? redirect()->back()->with('successEditChef','Chef is updated successfully') : "There is an error";
+        $this->chef->update($request->validated(),$chef);
+        return redirect()->back()->with('successEditChef','Chef is updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Chef $chef , ChefService $chefService)
+    public function destroy(Chef $chef)
     {
-        $chefDelete = $chefService->destroy($chef);
-        return $chefDelete ? redirect()->back()->with('successDeleteChef','Chef is deleted successfully') : "There is an error";
+        $this->chef->destroy($chef);
+        return redirect()->back()->with('successDeleteChef','Chef is deleted successfully');
     }
 }

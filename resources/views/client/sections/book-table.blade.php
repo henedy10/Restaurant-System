@@ -13,7 +13,7 @@
                                         <i class="bi bi-clock"></i>
                                         <div>
                                             <h5>Opening Hours</h5>
-                                            @forelse ($openingHours as $openingHour )
+                                            @forelse ($data['openingHours'] as $openingHour )
                                                 <p>{{$openingHour->from_day.' - '.$openingHour->to_day.': '.Carbon::parse($openingHour->from_time)->format('h:i A').' - '.Carbon::parse($openingHour->to_time)->format('h:i A')}}</p>
                                             @empty
                                                 -
@@ -25,7 +25,7 @@
                                         <i class="bi bi-geo-alt"></i>
                                         <div>
                                             <h5>Location</h5>
-                                            <p>{{$info->address ?? "-"}}</p>
+                                            <p>{{$data['info']->address ?? "-"}}</p>
                                         </div>
                                     </div>
 
@@ -33,7 +33,7 @@
                                         <i class="bi bi-telephone"></i>
                                         <div>
                                             <h5>Call Us</h5>
-                                            <p>{{$info->phone ?? "-"}}</p>
+                                            <p>{{$data['info']->phone ?? "-"}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
 
                     <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
                         <div class="reservation-image">
-                            <img src="{{asset('storage/'.$bookingImages->path)??''}}" alt="{{$bookingImages->name ?? "Booking Picture"}}" class="img-fluid rounded">
+                            <img src="{{asset('storage/'.$data['bookingImages']->path)??''}}" alt="{{$data['bookingImages']->name ?? "Booking Picture"}}" class="img-fluid rounded">
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                                 <h3>Book A Table</h3>
                                 <p>Please fill the form below to make a reservation</p>
                             </div>
-                                @if ($info->availability_booking)
+                                @if ($data['info']->availability_booking)
                                     <form action="{{route('book-tables.store')}}" method="POST" role="form" class="mt-4">
                                         @csrf
                                         <div class="row gy-4">

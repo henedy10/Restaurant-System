@@ -8,7 +8,7 @@
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
                 <div class="row">
-                    @foreach ( $chefs as $chef )
+                    @foreach ( $data['chefs'] as $chef )
                         <div class="col-lg-4">
                             <div class="chef-highlight" data-aos="fade-right" data-aos-delay="200">
                                 <figure class="chef-image">

@@ -8,18 +8,25 @@ use App\Services\Admin\TableService;
 
 class TableController extends Controller
 {
-    public function index(TableService $table)
+    protected TableService $table;
+
+    public function __construct(TableService $table)
     {
-        $info               = $table->index();
+        $this->table = $table;
+    }
+
+    public function index()
+    {
+        $info               = $this->table->index();
         $countTables        = $info['countTables'];
         $countBookingTables = $info['countBookingTables'];
 
         return view('admin.tables.index',compact('countTables','countBookingTables'));
     }
 
-    public function store(storeInfoTables $request , TableService $table)
+    public function store(storeInfoTables $request)
     {
-        $tableStore = $table->store($request);
+        $tableStore = $this->table->store($request);
         return $tableStore ? redirect()->back()->with(['successMsg' => 'data updated successfully']) : "There is an error";
     }
 }

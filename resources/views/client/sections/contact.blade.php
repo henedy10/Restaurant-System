@@ -18,7 +18,7 @@
                             </div>
                             <div class="info-content">
                                 <h4>Our Address</h4>
-                                <p>{{$info->address ?? "-"}}</p>
+                                <p>{{$data['info']->address ?? "-"}}</p>
                             </div>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                             </div>
                             <div class="info-content">
                                 <h4>Email Address</h4>
-                                <p>{{$info->email ?? "-"}}</p>
+                                <p>{{$data['info']->email ?? "-"}}</p>
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="info-content">
                                 <h4>Mobile Phone</h4>
-                                <p>{{$info->phone ?? "-"}}</p>
+                                <p>{{$data['info']->phone ?? "-"}}</p>
                             </div>
                         </div>
                     </div>

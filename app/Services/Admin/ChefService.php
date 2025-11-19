@@ -7,7 +7,7 @@ use App\Models\Chef;
 
 class ChefService {
 
-    public function uploadImage($name , $image)
+    public function uploadImage($name,$image)
     {
         $imageName = str_replace(' ','_',$name) . '.' . $image->getClientOriginalExtension();
         $imagePath = $image->storeAs('chef_images',$imageName,'public');
@@ -15,35 +15,24 @@ class ChefService {
         return $imagePath;
     }
 
-    public function store($request)
+    public function store(array $data)
     {
-        $imagePath = $this->uploadImage($request->name , $request->image);
-        $chefCreate = Chef::create([
-            'name'  => $request->name,
-            'role'  => $request->role,
-            'info'  => $request->info,
-            'image' => $imagePath,
-        ]);
+        $imagePath     = $this->uploadImage($data['name'],$data['image']);
+        $data['image'] = $imagePath;
+        $chefCreate    = Chef::create($data);
 
         return $chefCreate;
     }
 
-    public function update($request , $chef)
+    public function update(array $data,$chef)
     {
-        $data = [
-            'name'  => $request->name,
-            'role'  => $request->role,
-            'info'  => $request->info,
-        ];
-
-        if($request->hasFile('image')){
-
-            if($chef->image && Storage::disk('public')->exists($chef->image)){
-
+        if($data['image'])
+        {
+            if($chef->image && Storage::disk('public')->exists($chef->image))
+            {
                 Storage::disk('public')->delete($chef->image);
-                $imagePath = $this->uploadImage($request->name,$request->image);
+                $imagePath     = $this->uploadImage($data['name'],$data['image']);
                 $data['image'] = $imagePath;
-
             }
         }
 
@@ -54,10 +43,10 @@ class ChefService {
 
     public function destroy($chef)
     {
-        if($chef->image && Storage::disk('public')->exists($chef->image)){
+        if($chef->image && Storage::disk('public')->exists($chef->image))
+        {
             Storage::disk('public')->delete($chef->image);
         }
-
         $chefDelete = $chef->delete();
 
         return $chefDelete;
