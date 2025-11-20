@@ -17,16 +17,13 @@ class TableController extends Controller
 
     public function index()
     {
-        $info               = $this->table->index();
-        $countTables        = $info['countTables'];
-        $countBookingTables = $info['countBookingTables'];
-
-        return view('admin.tables.index',compact('countTables','countBookingTables'));
+        $info = $this->table->index();
+        return view('admin.tables.index',compact('info'));
     }
 
     public function store(storeInfoTables $request)
     {
-        $tableStore = $this->table->store($request);
-        return $tableStore ? redirect()->back()->with(['successMsg' => 'data updated successfully']) : "There is an error";
+        $this->table->store($request->validated());
+        return redirect()->back()->with(['successMsg' => 'data updated successfully']);
     }
 }

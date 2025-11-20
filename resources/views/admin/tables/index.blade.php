@@ -47,7 +47,7 @@
                                             name="number_of_tables"
                                             class="form-control bg-dark text-white"
                                             id="number_of_tables"
-                                            value="{{$countTables}}"
+                                            value="{{$info['countTables']}}"
                                             min="1"
                                         >
                                         <span class="text-danger">
@@ -94,7 +94,7 @@
                 <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">Total Tables</h5>
-                        <p class="card-text fs-5">{{$countTables}}</p>
+                        <p class="card-text fs-5">{{$info['countTables']}}</p>
                     </div>
                 </div>
             </div>
@@ -102,7 +102,7 @@
                 <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">Total Booking Tables</h5>
-                        <p class="card-text fs-5">{{$countBookingTables}}</p>
+                        <p class="card-text fs-5">{{$info['countBookingTables']}}</p>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                 <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">Total Availability Tables</h5>
-                        <p class="card-text fs-5">{{$countTables-$countBookingTables}}</p>
+                        <p class="card-text fs-5">{{$info['countTables']-$info['countBookingTables']}}</p>
                     </div>
                 </div>
             </div>
