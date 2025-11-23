@@ -1,14 +1,14 @@
 <?php
-
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\
 {
     ChefController,
     ContactController as ContactControllerAdmin,
+    DashboardController,
     ItemController,
     SystemController,
     OpeningHourController,
     TableController,
+    HomeController
 };
 use App\Http\Controllers\Client\
 {
@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\
 Auth::routes();
 
 Route::middleware('CheckAdmin')->group(function(){
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::controller(SystemController::class)->group(function(){
         Route::get('/system','index')->name('system.index');

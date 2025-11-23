@@ -4,7 +4,7 @@
     <div class="sidebar">
         <div class="p-3 d-flex justify-content-between align-items-center border-bottom border-dark bg-dark">
             <h5 class="mb-0 text-warning fw-bold">Contacts</h5>
-            <a href="{{route('home')}}" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-semibold">
+            <a href="{{route('dashboard')}}" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-semibold">
                 Exit
             </a>
         </div>

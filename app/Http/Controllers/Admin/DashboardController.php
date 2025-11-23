@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use App\Models\
 {
     Chef,
@@ -8,9 +9,8 @@ use App\Models\
     RestaurantInfo,
 };
 use App\Models\client\Subscriber;
-use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.

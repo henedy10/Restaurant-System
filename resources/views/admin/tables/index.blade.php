@@ -28,7 +28,7 @@
                     <div class="card-body p-4">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h3 class="mb-0 accent">Restaurant System</h3>
-                            <a href="{{route('home')}}" class="btn btn-sm btn-outline-warning">⬅ Previous Page</a>
+                            <a href="{{route('dashboard')}}" class="btn btn-sm btn-outline-warning">⬅ Previous Page</a>
                         </div>
 
                         <form method="POST" action="{{route('tables.update',$info['infoTables']->id)}}">

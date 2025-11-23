@@ -51,7 +51,7 @@
         <h2>Manage Chefs</h2>
         <!-- Button trigger modal -->
         <div class="d-flex align-items-center gap-3 mb-3">
-            <a href="{{route('home')}}" class="nav-link">Home</a>
+            <a href="{{route('dashboard')}}" class="nav-link">Home</a>
 
             <a href="{{route('chefs.create')}}" class="btn btn-gold" >
                 Add Chef
