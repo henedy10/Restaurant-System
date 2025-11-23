@@ -1,19 +1,22 @@
 <?php
 
-use App\Http\Controllers\
-{
-    ClientController,
-    HomeController,
-};
-
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\
 {
     ChefController,
-    ContactController,
+    ContactController as ContactControllerAdmin,
     ItemController,
     SystemController,
     OpeningHourController,
     TableController,
+};
+use App\Http\Controllers\Client\
+{
+    BookingTableController,
+    MenuController,
+    SubscriberController,
+    ContactController,
+    LandingPageController
 };
 use Illuminate\Support\Facades\
 {
@@ -40,17 +43,17 @@ Route::middleware('CheckAdmin')->group(function(){
     Route::resource('opening-hours',OpeningHourController::class)->only('edit','update','destroy');
     Route::resource('items',ItemController::class);
 
-    Route::controller(ContactController::class)->group(function (){
+    Route::controller(ContactControllerAdmin::class)->group(function (){
         Route::get('/Contacts','index')->name('system.contacts.index');
     });
 
 });
 Route::get('/new-item',[ItemController::class,'newItem'])->name('newItem');
 
-Route::controller(ClientController::class)->group(function(){
-    Route::get('/','index')->name('index');
-    Route::post('/book-tables','storeBookingTable')->name('book-tables.store');
-    Route::post('/subsribe','storeSubscribers')->name('subscribers.store');
-    Route::post('/contact','storeContactMessage')->name('contactMsg.store');
-    Route::get('/download-Menu','downloadMenu')->name('downloadMenu');
-});
+// ******************************** Client's Routes ****************************
+
+Route::get('/',LandingPageController::class)->name('index');
+Route::post('/book-tables',BookingTableController::class)->name('book-tables.store');
+Route::post('/contacts',ContactController::class)->name('contacts.store');
+Route::post('/subscribers',SubscriberController::class)->name('subscribers.store');
+Route::get('/download-menu',MenuController::class)->name('download-menu');

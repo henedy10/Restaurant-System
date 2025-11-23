@@ -61,7 +61,7 @@
                         <div class="contact-form-wrapper">
                             <h2 class="text-center mb-4">Get in Touch</h2>
 
-                            <form action="{{route('contactMsg.store')}}" method="post" >
+                            <form action="{{route('contacts.store')}}" method="post" >
                                 @csrf
                                 <div class="row g-3">
                                     <div class="col-md-6">
