@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Trait\UploadFile;
 use App\Http\Requests\admin\system\
 {
     storeImage,
@@ -18,6 +19,8 @@ use App\Models\
 
 class SystemController extends Controller
 {
+    use UploadFile;
+
     public function index()
     {
         $info         = RestaurantInfo::first();
@@ -46,8 +49,8 @@ class SystemController extends Controller
 
     public function storeImage(storeImage $request)
     {
-        $imageName = time().'-'.str_replace(' ','_',$request->name) . '.' . $request->file('image')->getClientOriginalExtension();
-        $imagePath = $request->file('image')->storeAs('sys_images',$imageName,'public');
+        $imagePath = $this->uploadImage($request->name,$request->file('image'));
+
         Image::create([
             'name'    => $request->name ,
             'path'    => $imagePath ,
