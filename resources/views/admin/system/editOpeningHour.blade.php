@@ -37,7 +37,7 @@
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h5 class="mb-0 accent">Edit Opening Hours</h5>
                         </div>
-                        <form action="{{route('system.openingHours.update',$openingHour->id)}}" method="POST">
+                        <form action="{{route('opening-hours.update',$openingHour->id)}}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="hour-row row g-2 align-items-end">

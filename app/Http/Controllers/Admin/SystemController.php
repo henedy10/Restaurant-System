@@ -7,7 +7,6 @@ use App\Http\Requests\admin\system\
 {
     storeImage,
     storeInfo,
-    updateOpeningHour,
 };
 
 use App\Models\
@@ -43,24 +42,6 @@ class SystemController extends Controller
         $validated = $request->validated();
         $systemInfo->update($validated);
         return redirect()->back()->with(['successMsg' => 'Info updated successfully']);
-    }
-
-    public function editOpeningHour(OpeningHour $openingHour)
-    {
-        return view('admin.system.editOpeningHour',compact('openingHour'));
-    }
-
-    public function updateOpeningHour(OpeningHour $openingHour, updateOpeningHour $request)
-    {
-        $validated = $request->validated();
-        $openingHour->update($validated);
-        return redirect()->route('system.index')->with(['success' => 'OpeningHour updated successfully']);
-    }
-
-    public function destroyOpeningHour(OpeningHour $openingHour)
-    {
-        $openingHour->delete();
-        return redirect()->back()->with(['success' => 'OpeningHour deleted successfully']);
     }
 
     public function storeImage(storeImage $request)

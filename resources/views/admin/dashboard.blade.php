@@ -42,7 +42,7 @@
                 <a href="{{route('system.index')}}" class="nav-link">Manage Sys.</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('system.tables.index')}}" class="nav-link">Manage Tables</a>
+                <a href="{{route('tables.index')}}" class="nav-link">Manage Tables</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('system.contacts.index')}}" class="nav-link">Contacts</a>

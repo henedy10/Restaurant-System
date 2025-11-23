@@ -8,22 +8,22 @@ class TableService {
 
     public function index()
     {
-        $countTables        = RestaurantInfo::value('number_of_tables');
+        $infoTables         = RestaurantInfo::select('id','number_of_tables')->first();
         $countBookingTables = BookingRoom::count();
 
         return [
-            'countTables'        => $countTables,
+            'infoTables'         => $infoTables,
             'countBookingTables' => $countBookingTables,
         ];
     }
 
-    public function store($request)
+    public function update($request ,$id)
     {
-        $info = RestaurantInfo::select('number_of_tables','availability_booking')->first();
+        $info = RestaurantInfo::findOrFail($id);
 
         $tableStore = $info->update([
-            'number_of_tables'      => $request->number_of_tables,
-            'availability_booking'  => $request->booking_availability ?? 0,
+            'number_of_tables'      => $request['number_of_tables'],
+            'availability_booking'  => $request['booking_availability'] ?? 0,
         ]);
 
         return $tableStore;

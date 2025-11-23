@@ -31,7 +31,7 @@
                             <a href="{{route('home')}}" class="btn btn-sm btn-outline-warning">⬅ Previous Page</a>
                         </div>
 
-                        <form method="POST" action="{{route('system.tables.store')}}">
+                        <form method="POST" action="{{route('tables.update',$info['infoTables']->id)}}">
                             @csrf
                             @method('PUT')
                             <div class="row g-2">
@@ -47,7 +47,7 @@
                                             name="number_of_tables"
                                             class="form-control bg-dark text-white"
                                             id="number_of_tables"
-                                            value="{{$info['countTables']}}"
+                                            value="{{$info['infoTables']->number_of_tables}}"
                                             min="1"
                                         >
                                         <span class="text-danger">
@@ -94,7 +94,7 @@
                 <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">Total Tables</h5>
-                        <p class="card-text fs-5">{{$info['countTables']}}</p>
+                        <p class="card-text fs-5">{{$info['infoTables']->number_of_tables}}</p>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                 <div class="card text-center shadow-lg" style="background-color: #000; color: #FFD700; border: 2px solid #FFD700; border-radius: 12px;">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">Total Availability Tables</h5>
-                        <p class="card-text fs-5">{{$info['countTables']-$info['countBookingTables']}}</p>
+                        <p class="card-text fs-5">{{($info['infoTables']->number_of_tables)-$info['countBookingTables']}}</p>
                     </div>
                 </div>
             </div>

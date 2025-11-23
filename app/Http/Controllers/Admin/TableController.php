@@ -21,9 +21,9 @@ class TableController extends Controller
         return view('admin.tables.index',compact('info'));
     }
 
-    public function store(storeInfoTables $request)
+    public function update(storeInfoTables $request ,$id)
     {
-        $this->table->store($request->validated());
+        $this->table->update($request->validated() ,$id);
         return redirect()->back()->with(['successMsg' => 'data updated successfully']);
     }
 }

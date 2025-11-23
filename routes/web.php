@@ -12,9 +12,9 @@ use App\Http\Controllers\Admin\
     ContactController,
     ItemController,
     SystemController,
+    OpeningHourController,
     TableController,
 };
-use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\
 {
     Route,
@@ -31,20 +31,13 @@ Route::middleware('CheckAdmin')->group(function(){
         Route::get('/subscribers','indexSubscribers')->name('system.index.subscribers');
         Route::post('/systemInfos','storeInfo')->name('system.info.store');
         Route::put('/systemInfos/{systemInfo}','updateInfo')->name('system.info.update');
-        Route::post('/openingHours','storeOpeningHours')->name('system.openingHours.store');
-        Route::get('/openingHours/{openingHour}/edit','editOpeningHour')->name('system.openingHours.edit');
-        Route::put('/openingHours/{openingHour}','updateOpeningHour')->name('system.openingHours.update');
         Route::delete('/openingHours/{openingHour}','destroyOpeningHour')->name('system.openingHours.destroy');
         Route::post('/images','storeImage')->name('system.images.store');
     });
 
-    Route::controller(TableController::class)->group(function (){
-        Route::get('/Tables','index')->name('system.tables.index');
-        Route::put('/Tables','store')->name('system.tables.store');
-    });
-
+    Route::resource('tables',TableController::class)->only('index','update');
     Route::resource('chefs',ChefController::class);
-
+    Route::resource('opening-hours',OpeningHourController::class)->only('edit','update','destroy');
     Route::resource('items',ItemController::class);
 
     Route::controller(ContactController::class)->group(function (){

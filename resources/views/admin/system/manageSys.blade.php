@@ -115,8 +115,8 @@
                                         <td>{{Carbon::parse($openingHour->from_time)->format('h:i A')}}</td>
                                         <td>{{Carbon::parse($openingHour->to_time)->format('h:i A')}}</td>
                                         <td>
-                                            <a href="{{route('system.openingHours.edit',$openingHour->id)}}" class="btn btn-sm btn-gold">Edit</a>
-                                            <form   action="{{route('system.openingHours.destroy',$openingHour->id)}}"
+                                            <a href="{{route('opening-hours.edit',$openingHour->id)}}" class="btn btn-sm btn-gold">Edit</a>
+                                            <form   action="{{route('opening-hours.destroy',$openingHour->id)}}"
                                                     method="POST"
                                                     onsubmit="return confirmDelete();"
                                                     style="display: inline;"
