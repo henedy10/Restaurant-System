@@ -44,16 +44,4 @@ class SystemController extends Controller
         $systemInfo->update($validated);
         return redirect()->back()->with(['successMsg' => 'Info updated successfully']);
     }
-
-    public function storeImage(storeImage $request)
-    {
-        $imagePath = $this->uploadImage($request->name,$request->file('image'));
-
-        Image::create([
-            'name'    => $request->name ,
-            'path'    => $imagePath ,
-            'section' => $request->section ,
-        ]);
-        return redirect()->back();
-    }
 }

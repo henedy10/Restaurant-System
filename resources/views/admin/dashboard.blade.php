@@ -33,23 +33,28 @@
                 <a href="#" class="nav-link active">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('chefs.index')}}" class="nav-link">Manage Chefs</a>
+                <a href="{{route('chefs.index')}}" class="nav-link">Chefs</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('items.index')}}" class="nav-link">Manage Items</a>
+                <a href="{{route('items.index')}}" class="nav-link">Items</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('opening-hours.index')}}" class="nav-link">Manage OpeningHours</a>
+                <a href="{{route('opening-hours.index')}}" class="nav-link">OpeningHours</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('system.index')}}" class="nav-link">Manage Sys.</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('tables.index')}}" class="nav-link">Manage Tables</a>
+                <a href="{{route('tables.index')}}" class="nav-link">Tables</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('system.contacts.index')}}" class="nav-link">Contacts</a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{route('images.create')}}" class="nav-link">Images</a>
+            </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link"
                 href="{{ route('logout') }}"

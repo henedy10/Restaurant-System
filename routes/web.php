@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\
     ChefController,
     ContactController as ContactControllerAdmin,
     DashboardController,
+    ImageController,
     ItemController,
     SystemController,
     OpeningHourController,
@@ -32,13 +33,13 @@ Route::middleware('CheckAdmin')->group(function(){
         Route::get('/system','index')->name('system.index');
         Route::post('/systemInfos','storeInfo')->name('system.info.store');
         Route::put('/systemInfos/{systemInfo}','updateInfo')->name('system.info.update');
-        Route::post('/images','storeImage')->name('system.images.store');
     });
 
     Route::resource('tables',TableController::class)->only('index','update');
     Route::resource('chefs',ChefController::class);
     Route::resource('opening-hours',OpeningHourController::class)->except('store','create');
     Route::resource('items',ItemController::class);
+    Route::resource('/images',ImageController::class)->only('create','store');
     Route::get('/Contacts',[ContactControllerAdmin::class,'index'])->name('system.contacts.index');
 
 });
