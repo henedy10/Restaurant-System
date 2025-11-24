@@ -28,7 +28,7 @@
                     <div class="card-body p-4">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h3 class="mb-0 accent">Restaurant System</h3>
-                            <a href="{{route('system.index')}}" class="btn btn-sm btn-outline-warning">⬅ Previous Page</a>
+                            <a href="{{route('opening-hours.index')}}" class="btn btn-sm btn-outline-warning">⬅ Previous Page</a>
                         </div>
 
                         <hr class="border-secondary">
@@ -99,6 +99,14 @@
                 </div>
             </div>
         </div>
+
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                <strong>✅ Success!</strong> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
     </div>
 
     <!-- Bootstrap JS -->

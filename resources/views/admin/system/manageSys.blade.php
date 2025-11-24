@@ -73,68 +73,6 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
-                        <hr class="border-secondary">
-
-
-                        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
-                            <h5 class="accent">Opening Hours</h5>
-
-                            <div class="position-relative d-flex align-items-center gap-2">
-                                <small class="text-danger d-none" id="hint">
-                                    * Add more than one period per day if necessary.
-                                </small>
-                                <span
-                                    class="text-danger border border-danger rounded-circle d-inline-flex justify-content-center align-items-center"
-                                    id="icon"
-                                    style="width: 28px; height: 28px; font-weight: bold; cursor: pointer; background-color: #fff0f0;">
-                                    !
-                                </span>
-                            </div>
-                        </div>
-
-                        <table class="table table-dark table-striped">
-                            @if ($openingHours->count() > 0)
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>From_Day</th>
-                                        <th>To_Day</th>
-                                        <th>From_Time</th>
-                                        <th>To_Time</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                            @endif
-
-                            <tbody>
-                                @forelse ( $openingHours as $openingHour )
-                                    <tr>
-                                        <td>{{$openingHours->firstItem() + $loop->index}}</td>
-                                        <td>{{$openingHour->from_day}}</td>
-                                        <td>{{$openingHour->to_day ?? "-"}}</td>
-                                        <td>{{Carbon::parse($openingHour->from_time)->format('h:i A')}}</td>
-                                        <td>{{Carbon::parse($openingHour->to_time)->format('h:i A')}}</td>
-                                        <td>
-                                            <a href="{{route('opening-hours.edit',$openingHour->id)}}" class="btn btn-sm btn-gold">Edit</a>
-                                            <form   action="{{route('opening-hours.destroy',$openingHour->id)}}"
-                                                    method="POST"
-                                                    onsubmit="return confirmDelete();"
-                                                    style="display: inline;"
-                                            >
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @empty
-
-                                @endforelse
-                            </tbody>
-                        </table>
-                        {{ $openingHours->links('pagination::bootstrap-4') }}
-
-                        @livewire('new-period')
 
                         <hr class="border-secondary">
                         <div>

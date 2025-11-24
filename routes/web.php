@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\
     SystemController,
     OpeningHourController,
     TableController,
-    HomeController
 };
 use App\Http\Controllers\Client\
 {
@@ -31,21 +30,16 @@ Route::middleware('CheckAdmin')->group(function(){
 
     Route::controller(SystemController::class)->group(function(){
         Route::get('/system','index')->name('system.index');
-        Route::get('/subscribers','indexSubscribers')->name('system.index.subscribers');
         Route::post('/systemInfos','storeInfo')->name('system.info.store');
         Route::put('/systemInfos/{systemInfo}','updateInfo')->name('system.info.update');
-        Route::delete('/openingHours/{openingHour}','destroyOpeningHour')->name('system.openingHours.destroy');
         Route::post('/images','storeImage')->name('system.images.store');
     });
 
     Route::resource('tables',TableController::class)->only('index','update');
     Route::resource('chefs',ChefController::class);
-    Route::resource('opening-hours',OpeningHourController::class)->only('edit','update','destroy');
+    Route::resource('opening-hours',OpeningHourController::class)->except('store','create');
     Route::resource('items',ItemController::class);
-
-    Route::controller(ContactControllerAdmin::class)->group(function (){
-        Route::get('/Contacts','index')->name('system.contacts.index');
-    });
+    Route::get('/Contacts',[ContactControllerAdmin::class,'index'])->name('system.contacts.index');
 
 });
 Route::get('/new-item',[ItemController::class,'newItem'])->name('newItem');

@@ -2,7 +2,14 @@
 
 namespace App\Services\Admin;
 
+use App\Models\OpeningHour;
+
 class OpeningHourService {
+
+    public function index()
+    {
+        return OpeningHour::paginate(4);
+    }
 
     public function update($data,$openingHour)
     {

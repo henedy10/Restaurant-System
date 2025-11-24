@@ -12,7 +12,6 @@ use App\Http\Requests\admin\system\
 
 use App\Models\
 {
-    OpeningHour,
     RestaurantInfo,
     Image
 };
@@ -24,8 +23,7 @@ class SystemController extends Controller
     public function index()
     {
         $info         = RestaurantInfo::first();
-        $openingHours = OpeningHour::paginate(4);
-        return view('admin.system.manageSys',compact('info','openingHours'));
+        return view('admin.system.manageSys',compact('info'));
     }
 
     public function storeInfo(storeInfo $request)

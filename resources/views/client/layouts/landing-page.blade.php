@@ -49,7 +49,7 @@
                 </nav>
 
                 <a class="btn-getstarted d-none d-sm-block" href="#book-a-table">Book a Table</a>
-                <a class="btn btn-outline-{{Auth::user() ? "success" : "danger"}} ml-2" href="{{route('home')}}">{{Auth::user() ? "Registered" : "Login (Admin)"}}</a>
+                <a class="btn btn-outline-{{Auth::user() ? "success" : "danger"}} ml-2" href="{{route('dashboard')}}">{{Auth::user() ? "Registered" : "Login (Admin)"}}</a>
 
             </div>
         </header>

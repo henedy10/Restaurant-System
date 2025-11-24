@@ -39,13 +39,13 @@ class NewPeriod extends Component
     {
         $validated = $this->validate();
         OpeningHour::create($validated);
-        return $this->redirect('/system');
+        return $this->redirect('/opening-hours');
     }
 
     public function deleteAll()
     {
         OpeningHour::truncate();
-        return $this->redirect('/system');
+        return $this->redirect('/opening-hours');
     }
 
     public function render()

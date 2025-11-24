@@ -39,6 +39,9 @@
                 <a href="{{route('items.index')}}" class="nav-link">Manage Items</a>
             </li>
             <li class="nav-item">
+                <a href="{{route('opening-hours.index')}}" class="nav-link">Manage OpeningHours</a>
+            </li>
+            <li class="nav-item">
                 <a href="{{route('system.index')}}" class="nav-link">Manage Sys.</a>
             </li>
             <li class="nav-item">

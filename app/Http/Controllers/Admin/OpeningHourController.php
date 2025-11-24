@@ -14,17 +14,21 @@ class OpeningHourController extends Controller
     {
     }
 
+    public function index()
+    {
+        $openingHours = $this->openingHour->index();
+        return view('admin.opening-hours.index',compact('openingHours'));
+    }
+
     public function edit(OpeningHour $openingHour)
     {
-        return view('admin.system.editOpeningHour',compact('openingHour'));
+        return view('admin.opening-hours.edit',compact('openingHour'));
     }
 
     public function update(OpeningHour $openingHour, updateOpeningHour $request)
     {
-        $data = $request->validated();
-        $this->openingHour->update($data,$openingHour);
-
-        return redirect()->route('system.index')->with(['success' => 'OpeningHour updated successfully']);
+        $this->openingHour->update($request->validated(),$openingHour);
+        return redirect()->back()->with(['success' => 'OpeningHour updated successfully']);
     }
 
     public function destroy(OpeningHour $openingHour)
