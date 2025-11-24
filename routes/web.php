@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\
     DashboardController,
     ImageController,
     ItemController,
-    SystemController,
+    InfoController,
     OpeningHourController,
     TableController,
 };
@@ -26,15 +26,11 @@ use Illuminate\Support\Facades\
 
 Auth::routes();
 
+// **************************** Admin's Routes *******************************
+
 Route::middleware('CheckAdmin')->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-    Route::controller(SystemController::class)->group(function(){
-        Route::get('/system','index')->name('system.index');
-        Route::post('/systemInfos','storeInfo')->name('system.info.store');
-        Route::put('/systemInfos/{systemInfo}','updateInfo')->name('system.info.update');
-    });
-
+    Route::resource('info',InfoController::class)->only('index','store','update');
     Route::resource('tables',TableController::class)->only('index','update');
     Route::resource('chefs',ChefController::class);
     Route::resource('opening-hours',OpeningHourController::class)->except('store','create');

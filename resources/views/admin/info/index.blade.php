@@ -31,7 +31,7 @@
                             <a href="{{route('dashboard')}}" class="btn btn-sm btn-outline-warning">⬅ Previous Page</a>
                         </div>
 
-                        <form method="POST" action="{{$info ? route('system.info.update',$info->id) : route('system.info.store')}}">
+                        <form method="POST" action="{{$info ? route('info.update',$info->id) : route('info.store')}}">
                             @if($info)
                                 @method('PUT')
                             @endif

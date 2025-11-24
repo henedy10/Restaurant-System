@@ -42,7 +42,7 @@
                 <a href="{{route('opening-hours.index')}}" class="nav-link">OpeningHours</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('system.index')}}" class="nav-link">Manage Sys.</a>
+                <a href="{{route('info.index')}}" class="nav-link">Info</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('tables.index')}}" class="nav-link">Tables</a>
